@@ -11,7 +11,7 @@
 #import "CameraEngine.h"
 
 @interface ViewController ()
-@property (nonatomic, strong) Float64 progressVideoRecording;
+@property (nonatomic, assign) Float64 progressVideoRecording;
 @end
 
 @implementation ViewController
