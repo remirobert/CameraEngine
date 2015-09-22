@@ -348,6 +348,28 @@
 }
 
 #pragma mark -
+#pragma mark App notifications
+
+- (void)initAppNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:[UIApplication sharedApplication]];
+}
+
+- (void)_applicationWillEnterForeground:(NSNotification *)notification {
+    NSLog(@"application will enter in foreground");
+    if (!_session) {
+        [self startup];
+    }
+}
+
+- (void)_applicationDidEnterBackground:(NSNotification *)notification {
+    NSLog(@"Application did enter in background");
+    if (_session) {
+        [self shutdown];
+    }
+}
+
+#pragma mark -
 #pragma mark Public API
 
 + (void)startup {
