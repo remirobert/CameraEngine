@@ -17,6 +17,21 @@ preview.frame = self.view.bounds;
 [self.view.layer addSublayer:preview];
 ```
 
+Change device orientation : 
+
+```Objective-c
+//In a button action trigger : 
+- (IBAction)switch:(id)sender {
+    AVCaptureDevicePosition current = [CameraEngine shareInstance].devicePosition;
+    
+    [CameraEngine shareInstance].devicePosition = (current == AVCaptureDevicePositionBack) ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
+}
+
+// Or manually :
+[CameraEngine shareInstance].devicePosition = AVCaptureDevicePositionFront;
+[CameraEngine shareInstance].devicePosition = AVCaptureDevicePositionBack;
+```
+
 Video recording methods :
 
 ```Objective-c
