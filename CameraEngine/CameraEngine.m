@@ -18,6 +18,10 @@
     AVCaptureConnection *_videoConnection;
     AVCaptureStillImageOutput *_stillImageOutput;
     
+    AVCaptureDevice *backCamera;
+    AVCaptureDevice *frontCamera;
+    AVCaptureDeviceInput *currentInput;
+    
     VideoEncoder* _encoder;
     BOOL _isCapturing;
     BOOL _isPaused;
@@ -76,9 +80,16 @@
         _discont = NO;
         
         _session = [[AVCaptureSession alloc] init];
-        AVCaptureDevice* backCamera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        AVCaptureDeviceInput* input = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:nil];
-        [_session addInput:input];
+        
+        
+        backCamera = [self captureDeviceForPosition:AVCaptureDevicePositionBack];
+        frontCamera = [self captureDeviceForPosition:AVCaptureDevicePositionFront];
+
+        currentInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:nil];
+        
+        if ([_session canAddInput:currentInput]) {
+            [_session addInput:currentInput];
+        }
         
         AVCaptureDevice* mic = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
         AVCaptureDeviceInput* micinput = [AVCaptureDeviceInput deviceInputWithDevice:mic error:nil];
@@ -132,6 +143,30 @@
         _preview.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
         _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     }
+}
+
+- (AVCaptureDevice *)captureDeviceForPosition:(AVCaptureDevicePosition)position {
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == position) {
+            return device;
+        }
+    }
+    return nil;
+}
+
+- (void)setDevicePosition:(AVCaptureDevicePosition)devicePosition {
+    _devicePosition = devicePosition;
+    AVCaptureDevice *device = (devicePosition == AVCaptureDevicePositionFront) ? backCamera : frontCamera;
+    
+    AVCaptureDeviceInput *newInput =  [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
+    [_session beginConfiguration];
+    [_session removeInput:currentInput];
+    if ([_session canAddInput:newInput]) {
+        [_session addInput:newInput];
+        currentInput = newInput;
+    }
+    [_session commitConfiguration];
 }
 
 - (void)startCapture:(void (^)(NSURL *videoPath))block {

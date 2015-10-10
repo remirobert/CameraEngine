@@ -37,8 +37,9 @@
 + (void)resumeCapture;
 + (void)stopCapture;
 
-@property (atomic, readwrite) BOOL isCapturing;
-@property (atomic, readwrite) BOOL isPaused;
+@property (nonatomic, assign) AVCaptureDevicePosition devicePosition;
+@property (nonatomic, readwrite) BOOL isCapturing;
+@property (nonatomic, readwrite) BOOL isPaused;
 @property (nonatomic, assign) CMTime maximumCaptureDuration;
 @property (nonatomic, assign) BOOL autSaveVideo;
 @property (nonatomic, strong) void (^readQRCodeCompletion)(NSString *content);
