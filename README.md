@@ -84,3 +84,5 @@ Get recording progress block :
   //get the sample buffer to get a single frame.
 };
 ```
+
+If a feature is missing, or you want something special, please open an issue, it let code for you !  😎👍
