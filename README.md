@@ -1,3 +1,10 @@
+#How to install
+
+With cocoapods:
+```ruby
+pod 'CameraEngine', '~> 0.2'
+```
+
 #How to use
 
 Start and shutdown :
@@ -17,13 +24,13 @@ preview.frame = self.view.bounds;
 [self.view.layer addSublayer:preview];
 ```
 
-Change device orientation : 
+Change device orientation :
 
 ```Objective-c
-//In a button action trigger : 
+//In a button action trigger :
 - (IBAction)switch:(id)sender {
     AVCaptureDevicePosition current = [CameraEngine shareInstance].devicePosition;
-    
+
     [CameraEngine shareInstance].devicePosition = (current == AVCaptureDevicePositionBack) ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
 }
 
