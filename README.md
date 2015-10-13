@@ -7,6 +7,8 @@ pod 'CameraEngine', '~> 0.2'
 
 #How to use
 
+* If a feature is missing, or you want something special, please open an issue, and let me code for you ! 😎👍
+
 Start and shutdown :
 ```Objective-c
 //start camera engine
@@ -84,5 +86,3 @@ Get recording progress block :
   //get the sample buffer to get a single frame.
 };
 ```
-
-If a feature is missing, or you want something special, please open an issue, and let me code for you !  😎👍
