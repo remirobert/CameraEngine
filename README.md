@@ -85,4 +85,4 @@ Get recording progress block :
 };
 ```
 
-If a feature is missing, or you want something special, please open an issue, it let code for you !  😎👍
+If a feature is missing, or you want something special, please open an issue, and let me code for you !  😎👍
