@@ -1,3 +1,5 @@
+![noun_128614_cc](https://cloud.githubusercontent.com/assets/3276768/10459431/0ab69d64-7202-11e5-99b2-4b65c01bd01a.png)
+
 #How to install
 
 With cocoapods:
