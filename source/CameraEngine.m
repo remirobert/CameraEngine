@@ -169,6 +169,38 @@
     [_session commitConfiguration];
 }
 
+- (void)setFlash:(BOOL)flash {
+    _flash = flash;
+    if ([backCamera hasFlash]) {
+        
+        [backCamera lockForConfiguration:nil];
+        if (_flash) {
+            [backCamera setFlashMode:AVCaptureFlashModeOn];
+        }
+        else {
+            [backCamera setFlashMode:AVCaptureFlashModeOff];
+        }
+        [backCamera unlockForConfiguration];
+    }
+}
+
+
+- (void)setTorch:(BOOL)torch {
+    _torch = torch;
+    if ([backCamera hasTorch]) {
+        
+        [backCamera lockForConfiguration:nil];
+        if (_torch) {
+            [backCamera setTorchMode:AVCaptureTorchModeOn];
+        }
+        else {
+            [backCamera setTorchMode:AVCaptureTorchModeOff];
+        }
+        [backCamera unlockForConfiguration];
+    }
+
+}
+
 - (void)startCapture:(void (^)(NSURL *videoPath))block {
     completionBlock = block;
     @synchronized(self) {
