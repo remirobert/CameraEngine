@@ -37,6 +37,8 @@
 + (void)resumeCapture;
 + (void)stopCapture;
 
+@property (nonatomic, assign) BOOL flash;
+@property (nonatomic, assign) BOOL torch;
 @property (nonatomic, assign) AVCaptureDevicePosition devicePosition;
 @property (nonatomic, readwrite) BOOL isCapturing;
 @property (nonatomic, readwrite) BOOL isPaused;

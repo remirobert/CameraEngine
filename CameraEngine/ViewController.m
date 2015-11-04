@@ -23,9 +23,11 @@
 }
 
 - (IBAction)switch:(id)sender {
-    AVCaptureDevicePosition current = [CameraEngine shareInstance].devicePosition;
+//    AVCaptureDevicePosition current = [CameraEngine shareInstance].devicePosition;
+//    
+//    [CameraEngine shareInstance].devicePosition = (current == AVCaptureDevicePositionBack) ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
     
-    [CameraEngine shareInstance].devicePosition = (current == AVCaptureDevicePositionBack) ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
+    [CameraEngine shareInstance].flash = true;
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer *)longPress {
