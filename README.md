@@ -28,6 +28,13 @@ preview.frame = self.view.bounds;
 [self.view.layer addSublayer:preview];
 ```
 
+Setup torch and flash :
+
+```Objective-c
+[CameraEngine shareInstance].flash = true;
+[CameraEngine shareInstance].torch = false;
+```
+
 Change device orientation :
 
 ```Objective-c
