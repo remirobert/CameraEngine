@@ -95,3 +95,7 @@ Get recording progress block :
   //get the sample buffer to get a single frame.
 };
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/remirobert/cameraengine/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
