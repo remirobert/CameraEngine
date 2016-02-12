@@ -1,4 +1,4 @@
-![cameraenginelogo](https://cloud.githubusercontent.com/assets/3276768/12975345/f3041ce8-d10e-11e5-99c4-2db99b5c9cd0.png)
+![cameraenginelogo](https://cloud.githubusercontent.com/assets/3276768/13000720/df3ec444-d1b1-11e5-9312-e70dabafa2f1.png)
 
 <h3 align="center">🌟 The most advanced Camera framework in <strong>Swift</strong> 🌟</h1>
 
@@ -203,3 +203,5 @@ To run the example projet, run `cocoapod install`, because it uses the current p
 This project is licensed under the terms of the MIT license. See the LICENSE file.
 
 > This project is in no way affiliated with Apple Inc. This project is open source under the MIT license, which means you have full access to the source code and can modify it to fit your own needs.
+
+![bannerbot](https://cloud.githubusercontent.com/assets/3276768/13000723/e2203c88-d1b1-11e5-983c-0a76c0f994db.png)
