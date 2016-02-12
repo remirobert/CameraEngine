@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CameraEngine"
-  s.version      = "0.5"
+  s.version      = "0.6"
   s.summary      = "CameraEngine library for iOS in Swift"
 
   s.description  = <<-DESC
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "v0.5" }
+  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "v0.6" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -85,7 +85,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "source", "CameraEngine/*.{swift}"
+  s.source_files  = "source", "CameraEngine/*"
 
   # s.public_header_files = "Classes/**/*.h"
 
