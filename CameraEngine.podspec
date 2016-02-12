@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CameraEngine"
-  s.version      = "0.2"
+  s.version      = "0.5"
   s.summary      = "CameraEngine library for iOS in Swift"
 
   s.description  = <<-DESC
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "0.2" }
+  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "v0.5" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
