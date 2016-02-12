@@ -1,0 +1,6 @@
+framework module FCFileManager {
+  umbrella header "FCFileManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

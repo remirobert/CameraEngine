@@ -1,0 +1,888 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04D9243D3408F34102CF4E088104F94E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD95A8345227AE9EF53130E9951D327 /* AVFoundation.framework */; };
+		067AB92AB71ADE18420675D2EA795403 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B0CEA7B869611E90177DCCB89BF9E2 /* CoreGraphics.framework */; };
+		1374EEC7E67FB73F9240545AC0D66ACA /* FLAnimatedImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0961E86820187AF334C87648B9399711 /* FLAnimatedImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B6DBB7D4EDF238AA2D89608A3F51C03 /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4248312183D5FC7737F45CB17A1F0DDD /* FLAnimatedImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23C38574DD71EE0FD5F9BB962528DD65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B0CEA7B869611E90177DCCB89BF9E2 /* CoreGraphics.framework */; };
+		25E1967A64EE442EA4935B385B52B1D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDA28139FCF0D31632D07E60D6CB000 /* Foundation.framework */; };
+		2AD7AFEB82D2B2B9F7EB3EAE81B637EB /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE2B76F2DE904A731BD9FECC50C6DEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDA28139FCF0D31632D07E60D6CB000 /* Foundation.framework */; };
+		3314A602B4A4E903C102E6F165C092F7 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FF79CC0CD6847521F717DECC321051 /* PBJVideoPlayerController.m */; };
+		479F4F3DD88028FE678D662CB934BCF2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41084AD90A6DAE7051CD67057A7E9FA2 /* QuartzCore.framework */; };
+		528D5A04F1E5A27F27B26DF18188DD22 /* FCFileManager-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB3DA2CD1A55B96AB9E4D708E40BB82 /* FCFileManager-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		694E9EF448880F6119C97B73454DAA91 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FDF6948C2A7AA74E69FFB59096FEE /* ImageIO.framework */; };
+		71EB9033946BCBF6C7B5A3ECD84E9C6A /* PBJVideoPlayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = B36C18E675C1D04EF09EBE5BF5486AF1 /* PBJVideoPlayerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7301FBA16C1543A6548BEE611DF95CE5 /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F88304807E69B1ED70DCA440243087 /* PBJVideoView.m */; };
+		793B3BC18A6BD80D99ACFBE8917F9F89 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D67BFF2081B3C8F735B7E411F0686D39 /* FLAnimatedImageView.m */; };
+		8045236B2C2358CC988FD2CA5C8EB2D0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FDF6948C2A7AA74E69FFB59096FEE /* ImageIO.framework */; };
+		8AA9541169EFB247C2D8443006945E42 /* FLAnimatedImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C309B1AEA8DDB1622438EEECB3F4BF1 /* FLAnimatedImage-dummy.m */; };
+		8ADC9D512FDCD5FF8CE4F919DBC6D1BA /* FCFileManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECE070F758A483879E56AA96D13E63B /* FCFileManager-dummy.m */; };
+		8E2DE4B877F5782F614F94E51F00BF73 /* PBJVideoPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9493678C3C041CA56EC911A4BEEC0D31 /* PBJVideoPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		902AADDCCC48381511DCF083CD9E20C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41084AD90A6DAE7051CD67057A7E9FA2 /* QuartzCore.framework */; };
+		97231775A681F371329FCD0CAEB85DB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDA28139FCF0D31632D07E60D6CB000 /* Foundation.framework */; };
+		974E69134FBA2EACC59DE6E6BBFF0E1C /* PBJVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD0576C40214355435E0609BD009D61 /* PBJVideoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97DB1953EF9FAD74C88EE83D82066619 /* FCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0B7E6AEC2932256B4502BB0F3B0B9E /* FCFileManager.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AB17BA3A1ACE470B05025C8DBA170345 /* FCFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D5FB7429A7C781A107F29AA6BA69F899 /* FCFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B9238977DCF3ED4109DFCACD471AF8F9 /* FLAnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 729E17EBE6042A942D09FD1C24B525C1 /* FLAnimatedImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3F05E19CB7670B032BEA9830D47EB6E /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */; };
+		C5B9CA1D7F1517B31E4C6970C8EC3DCF /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DDC851F694632D27113A9AB542ED6E /* FLAnimatedImage.m */; };
+		CEBBE4719771F05CCC3BE14E8D0C2D51 /* PBJVideoPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AD1C487C683D46A9E3948FFF5DD1DA /* PBJVideoPlayer-dummy.m */; };
+		D12062F2C330CA1988C514D6F0B1F47C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E87CB1703A0389E2A6EE2FFCC60814 /* UIKit.framework */; };
+		D4C2A207B3FA63A3705F30448E4519CD /* PBJVideoPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A10D97DE36DED928DF06469CC497A97 /* PBJVideoPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F33501B7B5A0603A19A319D70718A823 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDA28139FCF0D31632D07E60D6CB000 /* Foundation.framework */; };
+		F7296A8B4C033D01ADFD7F6CC2564F74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E87CB1703A0389E2A6EE2FFCC60814 /* UIKit.framework */; };
+		FCB0F77C7778B80972A628569149E8A7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2643CC927B277A9EE20DFC683C1216D7 /* MobileCoreServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		51285116C668B790E95E7AF35DB3A87C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A586E433C115B9B6A97A1FFDCC63FA66;
+			remoteInfo = FCFileManager;
+		};
+		5B2850E794540CE8FF68D594416ACB9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74BDE5EB0BB3CFCB6EE2405B094E42F1;
+			remoteInfo = PBJVideoPlayer;
+		};
+		6398884D242B6B301235DA0A6A226FE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE113CEF81C16AA59EC049ACE130BCB2;
+			remoteInfo = FLAnimatedImage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02AD1C487C683D46A9E3948FFF5DD1DA /* PBJVideoPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PBJVideoPlayer-dummy.m"; sourceTree = "<group>"; };
+		05DDC851F694632D27113A9AB542ED6E /* FLAnimatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImage.m; path = FLAnimatedImage/FLAnimatedImage.m; sourceTree = "<group>"; };
+		0961E86820187AF334C87648B9399711 /* FLAnimatedImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImage-umbrella.h"; sourceTree = "<group>"; };
+		1FDA28139FCF0D31632D07E60D6CB000 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		222BC8390C750CABD807C1DBA644AEC7 /* FLAnimatedImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImage-prefix.pch"; sourceTree = "<group>"; };
+		2643CC927B277A9EE20DFC683C1216D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		2A10D97DE36DED928DF06469CC497A97 /* PBJVideoPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PBJVideoPlayer-umbrella.h"; sourceTree = "<group>"; };
+		2AE5D7AE9E8457F20DE845F2F9FDD1BD /* FLAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		2CD95A8345227AE9EF53130E9951D327 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		2ECE070F758A483879E56AA96D13E63B /* FCFileManager-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FCFileManager-dummy.m"; sourceTree = "<group>"; };
+		2F4E6B8D7D281CA4510265D6B51B7F90 /* FCFileManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FCFileManager.xcconfig; sourceTree = "<group>"; };
+		2F9474285F8315DDE32DDEDC7F5F76E0 /* FLAnimatedImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FLAnimatedImage.modulemap; sourceTree = "<group>"; };
+		3B74AAD3683686C8DD6ADEA3550D37F7 /* PBJVideoPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PBJVideoPlayer.modulemap; sourceTree = "<group>"; };
+		41084AD90A6DAE7051CD67057A7E9FA2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		4248312183D5FC7737F45CB17A1F0DDD /* FLAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImageView.h; path = FLAnimatedImage/FLAnimatedImageView.h; sourceTree = "<group>"; };
+		45BB6E6C34550AE48403677250C62E65 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		461FDA1F7314348B1DC97F53D968AC82 /* CameraEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CameraEngine.h; path = CameraEngine/CameraEngine.h; sourceTree = "<group>"; };
+		537C0A4B2858C2FE0E2CF22B7695BF34 /* FCFileManager.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FCFileManager.modulemap; sourceTree = "<group>"; };
+		57E750114F6150DA9A1BA482F3B7E9F4 /* PBJVideoPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PBJVideoPlayer-prefix.pch"; sourceTree = "<group>"; };
+		6C309B1AEA8DDB1622438EEECB3F4BF1 /* FLAnimatedImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImage-dummy.m"; sourceTree = "<group>"; };
+		729E17EBE6042A942D09FD1C24B525C1 /* FLAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImage.h; path = FLAnimatedImage/FLAnimatedImage.h; sourceTree = "<group>"; };
+		72B0CEA7B869611E90177DCCB89BF9E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		896B59BBF3FE00268E08A645B9DC5CB7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9324048CD58C0C8FBCF501F48B255983 /* FCFileManager-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FCFileManager-prefix.pch"; sourceTree = "<group>"; };
+		9493678C3C041CA56EC911A4BEEC0D31 /* PBJVideoPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PBJVideoPlayer.h; path = Source/PBJVideoPlayer.h; sourceTree = "<group>"; };
+		977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		9D0E58B5BF1BA3BDB18B43BB716A855F /* FCFileManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FCFileManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FD0576C40214355435E0609BD009D61 /* PBJVideoView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PBJVideoView.h; path = Source/PBJVideoView.h; sourceTree = "<group>"; };
+		A3E87CB1703A0389E2A6EE2FFCC60814 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		AB0B7E6AEC2932256B4502BB0F3B0B9E /* FCFileManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FCFileManager.m; path = FCFileManager/FCFileManager.m; sourceTree = "<group>"; };
+		B36C18E675C1D04EF09EBE5BF5486AF1 /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PBJVideoPlayerController.h; path = Source/PBJVideoPlayerController.h; sourceTree = "<group>"; };
+		B9F88304807E69B1ED70DCA440243087 /* PBJVideoView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PBJVideoView.m; path = Source/PBJVideoView.m; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BAAF51FC5D1B023B9CE1A7D60EF80A7F /* FLAnimatedImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FLAnimatedImage.xcconfig; sourceTree = "<group>"; };
+		C3309D62CB937C95540ED576060E27EF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C518AD625FDB7F47AE8629B4EB38AB5D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAB3DA2CD1A55B96AB9E4D708E40BB82 /* FCFileManager-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FCFileManager-umbrella.h"; sourceTree = "<group>"; };
+		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D5FB7429A7C781A107F29AA6BA69F899 /* FCFileManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FCFileManager.h; path = FCFileManager/FCFileManager.h; sourceTree = "<group>"; };
+		D67BFF2081B3C8F735B7E411F0686D39 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImageView.m; path = FLAnimatedImage/FLAnimatedImageView.m; sourceTree = "<group>"; };
+		D7FF79CC0CD6847521F717DECC321051 /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PBJVideoPlayerController.m; path = Source/PBJVideoPlayerController.m; sourceTree = "<group>"; };
+		DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		DC6FDF6948C2A7AA74E69FFB59096FEE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA6A385A7596605B8E602D206A7EF8B7 /* PBJVideoPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PBJVideoPlayer.xcconfig; sourceTree = "<group>"; };
+		FBC80988E600127F2D8B0D9E85A9CC7F /* PBJVideoPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PBJVideoPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		047B3D1D898A577E8B89576370BBCFE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D9243D3408F34102CF4E088104F94E /* AVFoundation.framework in Frameworks */,
+				067AB92AB71ADE18420675D2EA795403 /* CoreGraphics.framework in Frameworks */,
+				2FE2B76F2DE904A731BD9FECC50C6DEB /* Foundation.framework in Frameworks */,
+				479F4F3DD88028FE678D662CB934BCF2 /* QuartzCore.framework in Frameworks */,
+				D12062F2C330CA1988C514D6F0B1F47C /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB60D922BC73A7276D2DD379287FDA11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F33501B7B5A0603A19A319D70718A823 /* Foundation.framework in Frameworks */,
+				8045236B2C2358CC988FD2CA5C8EB2D0 /* ImageIO.framework in Frameworks */,
+				F7296A8B4C033D01ADFD7F6CC2564F74 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E19D10745E44BBDCE373B12D7C604EAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23C38574DD71EE0FD5F9BB962528DD65 /* CoreGraphics.framework in Frameworks */,
+				25E1967A64EE442EA4935B385B52B1D2 /* Foundation.framework in Frameworks */,
+				694E9EF448880F6119C97B73454DAA91 /* ImageIO.framework in Frameworks */,
+				FCB0F77C7778B80972A628569149E8A7 /* MobileCoreServices.framework in Frameworks */,
+				902AADDCCC48381511DCF083CD9E20C6 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F005A2BE83B797C2A6EF92CB36E937B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97231775A681F371329FCD0CAEB85DB2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01D4264AB6284AAA3DC87A6BFC207866 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				729E17EBE6042A942D09FD1C24B525C1 /* FLAnimatedImage.h */,
+				05DDC851F694632D27113A9AB542ED6E /* FLAnimatedImage.m */,
+				4248312183D5FC7737F45CB17A1F0DDD /* FLAnimatedImageView.h */,
+				D67BFF2081B3C8F735B7E411F0686D39 /* FLAnimatedImageView.m */,
+				EA8655BEF877F198D37B9E468E520596 /* Support Files */,
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		21652909E21656EA0AC86FEFBB223506 /* PBJVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				9493678C3C041CA56EC911A4BEEC0D31 /* PBJVideoPlayer.h */,
+				B36C18E675C1D04EF09EBE5BF5486AF1 /* PBJVideoPlayerController.h */,
+				D7FF79CC0CD6847521F717DECC321051 /* PBJVideoPlayerController.m */,
+				9FD0576C40214355435E0609BD009D61 /* PBJVideoView.h */,
+				B9F88304807E69B1ED70DCA440243087 /* PBJVideoView.m */,
+				EBB4AA5266CBF328AC1013FDD4B9530D /* Support Files */,
+			);
+			path = PBJVideoPlayer;
+			sourceTree = "<group>";
+		};
+		25F3CF02FD7C4D7E3027255F692A9A32 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92248339D172900CC3749022E015FCEE /* CameraEngine */,
+				99F173FCB7EB31FB786F1A40AFF21AA5 /* FCFileManager */,
+				01D4264AB6284AAA3DC87A6BFC207866 /* FLAnimatedImage */,
+				21652909E21656EA0AC86FEFBB223506 /* PBJVideoPlayer */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		290C5ADEAF13B4C2349F5F364509EE94 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CD95A8345227AE9EF53130E9951D327 /* AVFoundation.framework */,
+				72B0CEA7B869611E90177DCCB89BF9E2 /* CoreGraphics.framework */,
+				1FDA28139FCF0D31632D07E60D6CB000 /* Foundation.framework */,
+				DC6FDF6948C2A7AA74E69FFB59096FEE /* ImageIO.framework */,
+				2643CC927B277A9EE20DFC683C1216D7 /* MobileCoreServices.framework */,
+				41084AD90A6DAE7051CD67057A7E9FA2 /* QuartzCore.framework */,
+				A3E87CB1703A0389E2A6EE2FFCC60814 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		4BCB58EA90987C8C567B33D438113631 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				537C0A4B2858C2FE0E2CF22B7695BF34 /* FCFileManager.modulemap */,
+				2F4E6B8D7D281CA4510265D6B51B7F90 /* FCFileManager.xcconfig */,
+				2ECE070F758A483879E56AA96D13E63B /* FCFileManager-dummy.m */,
+				9324048CD58C0C8FBCF501F48B255983 /* FCFileManager-prefix.pch */,
+				CAB3DA2CD1A55B96AB9E4D708E40BB82 /* FCFileManager-umbrella.h */,
+				896B59BBF3FE00268E08A645B9DC5CB7 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FCFileManager";
+			sourceTree = "<group>";
+		};
+		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */,
+				79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */,
+				D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */,
+				87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */,
+				894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */,
+				E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */,
+				CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */,
+				2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */,
+				977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */,
+				DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				F4CDA5FA9197A41E0081E84F932906EB /* Frameworks */,
+				25F3CF02FD7C4D7E3027255F692A9A32 /* Pods */,
+				FD95C9FF61B84FABF0CB9B2C468125B6 /* Products */,
+				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		92248339D172900CC3749022E015FCEE /* CameraEngine */ = {
+			isa = PBXGroup;
+			children = (
+				461FDA1F7314348B1DC97F53D968AC82 /* CameraEngine.h */,
+			);
+			path = CameraEngine;
+			sourceTree = "<group>";
+		};
+		99F173FCB7EB31FB786F1A40AFF21AA5 /* FCFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				D5FB7429A7C781A107F29AA6BA69F899 /* FCFileManager.h */,
+				AB0B7E6AEC2932256B4502BB0F3B0B9E /* FCFileManager.m */,
+				4BCB58EA90987C8C567B33D438113631 /* Support Files */,
+			);
+			path = FCFileManager;
+			sourceTree = "<group>";
+		};
+		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				75D98FF52E597A11900E131B6C4E1ADA /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EA8655BEF877F198D37B9E468E520596 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F9474285F8315DDE32DDEDC7F5F76E0 /* FLAnimatedImage.modulemap */,
+				BAAF51FC5D1B023B9CE1A7D60EF80A7F /* FLAnimatedImage.xcconfig */,
+				6C309B1AEA8DDB1622438EEECB3F4BF1 /* FLAnimatedImage-dummy.m */,
+				222BC8390C750CABD807C1DBA644AEC7 /* FLAnimatedImage-prefix.pch */,
+				0961E86820187AF334C87648B9399711 /* FLAnimatedImage-umbrella.h */,
+				C3309D62CB937C95540ED576060E27EF /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FLAnimatedImage";
+			sourceTree = "<group>";
+		};
+		EBB4AA5266CBF328AC1013FDD4B9530D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C518AD625FDB7F47AE8629B4EB38AB5D /* Info.plist */,
+				3B74AAD3683686C8DD6ADEA3550D37F7 /* PBJVideoPlayer.modulemap */,
+				EA6A385A7596605B8E602D206A7EF8B7 /* PBJVideoPlayer.xcconfig */,
+				02AD1C487C683D46A9E3948FFF5DD1DA /* PBJVideoPlayer-dummy.m */,
+				57E750114F6150DA9A1BA482F3B7E9F4 /* PBJVideoPlayer-prefix.pch */,
+				2A10D97DE36DED928DF06469CC497A97 /* PBJVideoPlayer-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PBJVideoPlayer";
+			sourceTree = "<group>";
+		};
+		F4CDA5FA9197A41E0081E84F932906EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				290C5ADEAF13B4C2349F5F364509EE94 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD95C9FF61B84FABF0CB9B2C468125B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D0E58B5BF1BA3BDB18B43BB716A855F /* FCFileManager.framework */,
+				2AE5D7AE9E8457F20DE845F2F9FDD1BD /* FLAnimatedImage.framework */,
+				FBC80988E600127F2D8B0D9E85A9CC7F /* PBJVideoPlayer.framework */,
+				45BB6E6C34550AE48403677250C62E65 /* Pods.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0F53437C86350F7BE134DC397F3E0C67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1374EEC7E67FB73F9240545AC0D66ACA /* FLAnimatedImage-umbrella.h in Headers */,
+				B9238977DCF3ED4109DFCACD471AF8F9 /* FLAnimatedImage.h in Headers */,
+				1B6DBB7D4EDF238AA2D89608A3F51C03 /* FLAnimatedImageView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F48D64E0C5106DF6A19FC73C8CE7207 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C2A207B3FA63A3705F30448E4519CD /* PBJVideoPlayer-umbrella.h in Headers */,
+				8E2DE4B877F5782F614F94E51F00BF73 /* PBJVideoPlayer.h in Headers */,
+				71EB9033946BCBF6C7B5A3ECD84E9C6A /* PBJVideoPlayerController.h in Headers */,
+				974E69134FBA2EACC59DE6E6BBFF0E1C /* PBJVideoView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		415676BC5715B5EB0407739D2FBD4672 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AD7AFEB82D2B2B9F7EB3EAE81B637EB /* Pods-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7508CB426F71C946B06352AA4872A9A1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528D5A04F1E5A27F27B26DF18188DD22 /* FCFileManager-umbrella.h in Headers */,
+				AB17BA3A1ACE470B05025C8DBA170345 /* FCFileManager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		14219B885FFE67A01981EBFD95C621B9 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8076CF85E5F433F4F19C0DB26655A394 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				AF1F9718F2CA57C229911881473C96E0 /* Sources */,
+				F005A2BE83B797C2A6EF92CB36E937B5 /* Frameworks */,
+				415676BC5715B5EB0407739D2FBD4672 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11EB72E861D584AA28AB96368B35AE29 /* PBXTargetDependency */,
+				76DE60693339D9D3A5FF00F4C6D52263 /* PBXTargetDependency */,
+				38AEA0CD30CF293930C323A520BF30BC /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 45BB6E6C34550AE48403677250C62E65 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		74BDE5EB0BB3CFCB6EE2405B094E42F1 /* PBJVideoPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 540DAD508FD66A37E6EE033DE074ACA7 /* Build configuration list for PBXNativeTarget "PBJVideoPlayer" */;
+			buildPhases = (
+				3CFB5294849B0A444EC9AEDC3BCF5E73 /* Sources */,
+				047B3D1D898A577E8B89576370BBCFE6 /* Frameworks */,
+				1F48D64E0C5106DF6A19FC73C8CE7207 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PBJVideoPlayer;
+			productName = PBJVideoPlayer;
+			productReference = FBC80988E600127F2D8B0D9E85A9CC7F /* PBJVideoPlayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A586E433C115B9B6A97A1FFDCC63FA66 /* FCFileManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 338BF7DB4CE84A6B26CBCE82157B2844 /* Build configuration list for PBXNativeTarget "FCFileManager" */;
+			buildPhases = (
+				60C7FE7DBEA63A3E50EE9B2ADECE1053 /* Sources */,
+				DB60D922BC73A7276D2DD379287FDA11 /* Frameworks */,
+				7508CB426F71C946B06352AA4872A9A1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FCFileManager;
+			productName = FCFileManager;
+			productReference = 9D0E58B5BF1BA3BDB18B43BB716A855F /* FCFileManager.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FE113CEF81C16AA59EC049ACE130BCB2 /* FLAnimatedImage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E4AFDEDCC47C4415CB9B5B395C41321 /* Build configuration list for PBXNativeTarget "FLAnimatedImage" */;
+			buildPhases = (
+				F63393576B334501224376DB8B339904 /* Sources */,
+				E19D10745E44BBDCE373B12D7C604EAC /* Frameworks */,
+				0F53437C86350F7BE134DC397F3E0C67 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FLAnimatedImage;
+			productName = FLAnimatedImage;
+			productReference = 2AE5D7AE9E8457F20DE845F2F9FDD1BD /* FLAnimatedImage.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = FD95C9FF61B84FABF0CB9B2C468125B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A586E433C115B9B6A97A1FFDCC63FA66 /* FCFileManager */,
+				FE113CEF81C16AA59EC049ACE130BCB2 /* FLAnimatedImage */,
+				74BDE5EB0BB3CFCB6EE2405B094E42F1 /* PBJVideoPlayer */,
+				14219B885FFE67A01981EBFD95C621B9 /* Pods */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CFB5294849B0A444EC9AEDC3BCF5E73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEBBE4719771F05CCC3BE14E8D0C2D51 /* PBJVideoPlayer-dummy.m in Sources */,
+				3314A602B4A4E903C102E6F165C092F7 /* PBJVideoPlayerController.m in Sources */,
+				7301FBA16C1543A6548BEE611DF95CE5 /* PBJVideoView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C7FE7DBEA63A3E50EE9B2ADECE1053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ADC9D512FDCD5FF8CE4F919DBC6D1BA /* FCFileManager-dummy.m in Sources */,
+				97DB1953EF9FAD74C88EE83D82066619 /* FCFileManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF1F9718F2CA57C229911881473C96E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3F05E19CB7670B032BEA9830D47EB6E /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F63393576B334501224376DB8B339904 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AA9541169EFB247C2D8443006945E42 /* FLAnimatedImage-dummy.m in Sources */,
+				C5B9CA1D7F1517B31E4C6970C8EC3DCF /* FLAnimatedImage.m in Sources */,
+				793B3BC18A6BD80D99ACFBE8917F9F89 /* FLAnimatedImageView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11EB72E861D584AA28AB96368B35AE29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FCFileManager;
+			target = A586E433C115B9B6A97A1FFDCC63FA66 /* FCFileManager */;
+			targetProxy = 51285116C668B790E95E7AF35DB3A87C /* PBXContainerItemProxy */;
+		};
+		38AEA0CD30CF293930C323A520BF30BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PBJVideoPlayer;
+			target = 74BDE5EB0BB3CFCB6EE2405B094E42F1 /* PBJVideoPlayer */;
+			targetProxy = 5B2850E794540CE8FF68D594416ACB9D /* PBXContainerItemProxy */;
+		};
+		76DE60693339D9D3A5FF00F4C6D52263 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FLAnimatedImage;
+			target = FE113CEF81C16AA59EC049ACE130BCB2 /* FLAnimatedImage */;
+			targetProxy = 6398884D242B6B301235DA0A6A226FE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E9DA2A8FC2766AC4ABB2B62BB7EE598 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6A385A7596605B8E602D206A7EF8B7 /* PBJVideoPlayer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PBJVideoPlayer/PBJVideoPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PBJVideoPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PBJVideoPlayer/PBJVideoPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PBJVideoPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1132C726F7F3616DD8AC30CA460F7B83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAAF51FC5D1B023B9CE1A7D60EF80A7F /* FLAnimatedImage.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FLAnimatedImage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FLAnimatedImage/FLAnimatedImage.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FLAnimatedImage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2E0F5039C374E1ECDDBE7EF9EADC19FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4E6B8D7D281CA4510265D6B51B7F90 /* FCFileManager.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FCFileManager/FCFileManager-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FCFileManager/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FCFileManager/FCFileManager.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = FCFileManager;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		59225AA2FDECDECEBCA73CBA9EF78150 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		66E5F9604F00638A104415DA4E824004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAAF51FC5D1B023B9CE1A7D60EF80A7F /* FLAnimatedImage.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FLAnimatedImage/FLAnimatedImage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FLAnimatedImage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FLAnimatedImage/FLAnimatedImage.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = FLAnimatedImage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8A3AEADD5160D845C8F4C83F7ECF9AC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8D1534490D941DCA47C62AC4314182AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		B1C6DEF8DB89A4A2A74E59DB2A0CEA73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4E6B8D7D281CA4510265D6B51B7F90 /* FCFileManager.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FCFileManager/FCFileManager-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FCFileManager/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FCFileManager/FCFileManager.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FCFileManager;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C5A18280E9321A9268D1C80B7DA43967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCD29AB63C0D064821E43CC5424D61A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6A385A7596605B8E602D206A7EF8B7 /* PBJVideoPlayer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PBJVideoPlayer/PBJVideoPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PBJVideoPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PBJVideoPlayer/PBJVideoPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PBJVideoPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D1534490D941DCA47C62AC4314182AF /* Debug */,
+				C5A18280E9321A9268D1C80B7DA43967 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		338BF7DB4CE84A6B26CBCE82157B2844 /* Build configuration list for PBXNativeTarget "FCFileManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1C6DEF8DB89A4A2A74E59DB2A0CEA73 /* Debug */,
+				2E0F5039C374E1ECDDBE7EF9EADC19FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E4AFDEDCC47C4415CB9B5B395C41321 /* Build configuration list for PBXNativeTarget "FLAnimatedImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1132C726F7F3616DD8AC30CA460F7B83 /* Debug */,
+				66E5F9604F00638A104415DA4E824004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		540DAD508FD66A37E6EE033DE074ACA7 /* Build configuration list for PBXNativeTarget "PBJVideoPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E9DA2A8FC2766AC4ABB2B62BB7EE598 /* Debug */,
+				CCD29AB63C0D064821E43CC5424D61A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8076CF85E5F433F4F19C0DB26655A394 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A3AEADD5160D845C8F4C83F7ECF9AC5 /* Debug */,
+				59225AA2FDECDECEBCA73CBA9EF78150 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

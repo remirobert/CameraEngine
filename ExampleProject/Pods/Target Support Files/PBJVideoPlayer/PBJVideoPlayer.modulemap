@@ -1,0 +1,6 @@
+framework module PBJVideoPlayer {
+  umbrella header "PBJVideoPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}
