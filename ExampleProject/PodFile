@@ -1,6 +1,6 @@
 use_frameworks!
 
-pod 'CameraEngine'
+pod 'CameraEngine', '~> 0.6'
 
 pod 'PBJVideoPlayer'
 pod 'FCFileManager'

@@ -192,7 +192,7 @@ public class CameraEngine: NSObject {
         return Static.instance!
     }
     
-    override init() {
+    public override init() {
         super.init()
         self.setupSession()
     }

@@ -1,17 +1,17 @@
 PODS:
-  - CameraEngine (0.5)
+  - CameraEngine (0.6)
   - FCFileManager (1.0.17)
   - FLAnimatedImage (1.0.10)
   - PBJVideoPlayer (0.3.0)
 
 DEPENDENCIES:
-  - CameraEngine
+  - CameraEngine (~> 0.6)
   - FCFileManager
   - FLAnimatedImage
   - PBJVideoPlayer
 
 SPEC CHECKSUMS:
-  CameraEngine: 83861c14abe2e3005467d163cb01e8e045330acf
+  CameraEngine: f24bf8de9db66522527baaa1ae040ac3378213cc
   FCFileManager: 8bfc931ce2a6223676147e9baf0e8a65c691eca6
   FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
   PBJVideoPlayer: 1024ec3e90802459e28fac3d822f03719e100d34
