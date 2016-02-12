@@ -23,7 +23,7 @@ public enum CameraEngineSessionPreset {
     case Frame1280x720
     case InputPriority
     
-    func foundationPreset() -> String {
+    public func foundationPreset() -> String {
         switch self {
         case .Photo: return AVCaptureSessionPresetPhoto
         case .High: return AVCaptureSessionPresetHigh
