@@ -22,7 +22,7 @@
 :camera: | Photo capture
 :movie_camera: | Video capture
 :chart_with_upwards_trend: | quality settings presset video / photo capture
-:raising_hand: | sitch device (front, back) #selfiepower 
+:raising_hand: | switch device (front, back) #selfiepower
 :bulb: | flash mode management
 :flashlight: | torch mode management
 :mag_right: | focus mode management
