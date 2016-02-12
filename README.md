@@ -2,10 +2,10 @@
 
 <h3 align="center">🌟 The most advanced Camera framework in <strong>Swift</strong> 🌟</h1>
 
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/ibireme/YYAsyncLayer/master/LICENSE)&nbsp;
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/remirobert/CameraEngine/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
-[![CocoaPods](http://img.shields.io/cocoapods/v/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=YYAsyncLayer)&nbsp;
-[![CocoaPods](http://img.shields.io/cocoapods/p/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=YYAsyncLayer)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/v/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=CameraEngine)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/p/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=CameraEngine)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%209%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 
 **CameraEngine** *is an iOS camera engine library that allows easy integration of special capture features and camera customization in your iOS app.*
