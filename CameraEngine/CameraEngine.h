@@ -2,49 +2,18 @@
 //  CameraEngine.h
 //  CameraEngine
 //
-//  Created by Remi Robert on 19/08/15.
-//  Copyright (c) 2015 Remi Robert. All rights reserved.
+//  Created by Remi Robert on 12/02/16.
+//  Copyright © 2016 Remi Robert. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <Foundation/Foundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 
-# define MAIN_CAPTURE_QUEUE                "com.remirobert.cameraengine.capture"
-# define CAPTURE_METADA_TAOUTPUT_QUEUE     "com.remirobert.metadata.queue"
+//! Project version number for CameraEngine.
+FOUNDATION_EXPORT double CameraEngineVersionNumber;
 
-@interface CameraEngine : NSObject
+//! Project version string for CameraEngine.
+FOUNDATION_EXPORT const unsigned char CameraEngineVersionString[];
 
-+ (instancetype)shareInstance;
-+ (CameraEngine *)engine;
-- (void)startup;
-- (void)shutdown;
-- (AVCaptureVideoPreviewLayer *)getPreviewLayer;
+// In this header, you should import all the public headers of your framework using statements like #import <CameraEngine/PublicHeader.h>
 
-- (void)capturePhoto:(void (^)(UIImage *image))block;
-- (void)startCapture:(void (^)(NSURL *videoPath))block;
-- (void)pauseCapture;
-- (void)resumeCapture;
-- (void)stopCapture;
 
-+ (void)startup;
-+ (void)shutdown;
-+ (AVCaptureVideoPreviewLayer *)getPreviewLayer;
-+ (void)capturePhoto:(void (^)(UIImage *image))block;
-+ (void)startCapture:(void (^)(NSURL *videoPath))block;
-+ (void)pauseCapture;
-+ (void)resumeCapture;
-+ (void)stopCapture;
-
-@property (nonatomic, assign) BOOL flash;
-@property (nonatomic, assign) BOOL torch;
-@property (nonatomic, assign) AVCaptureDevicePosition devicePosition;
-@property (nonatomic, readwrite) BOOL isCapturing;
-@property (nonatomic, readwrite) BOOL isPaused;
-@property (nonatomic, assign) CMTime maximumCaptureDuration;
-@property (nonatomic, assign) BOOL autSaveVideo;
-@property (nonatomic, strong) void (^readQRCodeCompletion)(NSString *content);
-@property (nonatomic, strong) void (^progressRecordingCompletion)(Float64 currentTime, CMSampleBufferRef sampleBuffer);
-
-@end
