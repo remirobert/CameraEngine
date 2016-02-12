@@ -4,10 +4,9 @@
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/ibireme/YYAsyncLayer/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
-[![CocoaPods](http://img.shields.io/cocoapods/v/YYAsyncLayer.svg?style=flat)](http://cocoapods.org/?q=YYAsyncLayer)&nbsp;
-[![CocoaPods](http://img.shields.io/cocoapods/p/YYAsyncLayer.svg?style=flat)](http://cocoapods.org/?q=YYAsyncLayer)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/v/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=YYAsyncLayer)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/p/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=YYAsyncLayer)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
-[![Build Status](https://travis-ci.org/ibireme/YYAsyncLayer.svg?branch=master)](https://travis-ci.org/ibireme/YYAsyncLayer)
 
 **CameraEngine** *is an iOS camera engine library that allows easy integration of special capture features and camera customization in your iOS app.*
 
