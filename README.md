@@ -7,6 +7,7 @@
 [![CocoaPods](http://img.shields.io/cocoapods/v/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=CameraEngine)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/p/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=CameraEngine)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%209%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+[![codebeat badge](https://codebeat.co/badges/fcf16e2f-fe4e-4d4d-abb4-968e71c7d9f2)](https://codebeat.co/projects/github-com-remirobert-cameraengine)&nbsp;
 
 **CameraEngine** *is an iOS camera engine library that allows easy integration of special capture features and camera customization in your iOS app.*
 
