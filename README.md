@@ -20,6 +20,7 @@
 
               |  CameraEngine
 --------------------------|------------------------------------------------------------
+:relaxed: | Support iOS8 - iOS9
 :camera: | Photo capture
 :movie_camera: | Video capture
 :chart_with_upwards_trend: | quality settings presset video / photo capture
