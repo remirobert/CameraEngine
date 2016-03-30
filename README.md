@@ -110,7 +110,7 @@ self.cameraEngine.createGif(url, frames: self.frames, delayTime: 0.1, completion
 
 ## :wrench: configurations
 
-Camera Engine, allows you to set some parameters, such as management of flash, torch and focus. But also on the quality of the media, which also has an impact on the size of the output file. 
+CameraEngine, allows you to set some parameters, such as management of **flash**, **torch** and **focus**. But also on the quality of the media, which also has an impact on the size of the output file. 
 
 > Flash
 
@@ -163,7 +163,7 @@ self.cameraEngine.videoEncoderPresset = .Preset3840x2160
 
 ## :eyes: Object detection
 
-CameraEngine can detect faces, qrcodes, or barcode. It will return all metadata on each frame, when it detects something. To exploit you whenever you want later.
+CameraEngine can detect **faces**, **QRcodes**, or **barcode**. It will return all metadata on each frame, when it detects something. To exploit you whenever you want later.
 
 > Set the detection mode
 
