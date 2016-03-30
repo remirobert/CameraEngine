@@ -12,6 +12,10 @@
 
 **CameraEngine** *is an iOS camera engine library that allows easy integration of special capture features and camera customization in your iOS app.*
 
+<p align="center">
+  <img src ="https://cloud.githubusercontent.com/assets/3276768/14136235/579a1a2c-f694-11e5-8bce-f784884da8ea.png"/>
+</p>
+
 ## :fire: Features
 
 
