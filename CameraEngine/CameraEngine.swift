@@ -33,7 +33,13 @@ public enum CameraEngineSessionPreset {
         case .Res640x480: return AVCaptureSessionPreset640x480
         case .Res1280x720: return AVCaptureSessionPreset1280x720
         case .Res1920x1080: return AVCaptureSessionPreset1920x1080
-        case .Res3840x2160: return AVCaptureSessionPreset3840x2160
+        case .Res3840x2160:
+            if #available(iOS 9.0, *) {
+                return AVCaptureSessionPreset3840x2160
+            }
+            else {
+                return AVCaptureSessionPresetPhoto
+            }
         case .Frame960x540: return AVCaptureSessionPresetiFrame960x540
         case .Frame1280x720: return AVCaptureSessionPresetiFrame1280x720
         default: return AVCaptureSessionPresetPhoto
