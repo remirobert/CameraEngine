@@ -203,3 +203,6 @@ This project is licensed under the terms of the MIT license. See the LICENSE fil
 > This project is in no way affiliated with Apple Inc. This project is open source under the MIT license, which means you have full access to the source code and can modify it to fit your own needs.
 
 ![bannabot](https://cloud.githubusercontent.com/assets/3276768/13000776/da960a14-d1b2-11e5-849f-d0f0703b8aa2.png)
+
+If you want to support the development of this library, feel free to
+[![Donate](https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2MUNQRB8KTSM8 "Donate"). Thanks to all contributors so far!
