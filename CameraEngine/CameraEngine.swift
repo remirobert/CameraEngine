@@ -67,7 +67,7 @@ public enum CameraEngineSessionPreset {
 let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
 
 public class CameraEngine: NSObject {
-
+    
     private let session = AVCaptureSession()
     private let cameraDevice = CameraEngineDevice()
     private let cameraOutput = CameraEngineCaptureOutput()
@@ -79,7 +79,7 @@ public class CameraEngine: NSObject {
     private var sessionQueue: dispatch_queue_t! = {
         dispatch_queue_create(cameraEngineSessionQueueIdentifier, DISPATCH_QUEUE_SERIAL)
     }()
-
+    
     private var _torchMode: AVCaptureTorchMode = .Off
     public var torchMode: AVCaptureTorchMode! {
         get {
@@ -174,7 +174,7 @@ public class CameraEngine: NSObject {
             self.cameraMetadata.blockCompletionFaceDetection = self.blockCompletionFaceDetection
         }
     }
-
+    
     public var blockCompletionCodeDetection: blockCompletionDetectionCode? {
         didSet {
             self.cameraMetadata.blockCompletionCodeDetection = self.blockCompletionCodeDetection
@@ -247,7 +247,7 @@ public class CameraEngine: NSObject {
         self.cameraDevice.changeCurrentDevice(position)
         self.configureInputDevice()
     }
-
+    
     public func compatibleCameraFocus() -> [CameraEngineCameraFocus] {
         if let currentDevice = self.cameraDevice.currentDevice {
             return CameraEngineCameraFocus.availableFocus().filter {
@@ -272,7 +272,7 @@ public class CameraEngine: NSObject {
     public func compatibleDetectionMetadata() -> [CameraEngineCaptureOutputDetection] {
         return CameraEngineCaptureOutputDetection.availableDetection()
     }
-
+    
     private func configureFlash(mode: AVCaptureFlashMode) {
         if let currentDevice = self.cameraDevice.currentDevice where currentDevice.flashAvailable && currentDevice.flashMode != mode {
             do {
