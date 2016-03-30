@@ -196,7 +196,7 @@ self.cameraEngine.blockCompletionCodeDetection = { codeObject in
 ## :car::dash: Example
 
 You will find a sample project, which implements all the features of CameraEngine, with an interface that allows you to test and play with the settings.
-To run the example projet, run `cocoapod install`, because it uses the current prod version of CameraEngine.
+To run the example projet, run `pod install`, because it uses the current prod version of CameraEngine.
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.
