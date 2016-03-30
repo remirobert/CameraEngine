@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "v0.8" }
+  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "v0.9" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
