@@ -156,6 +156,9 @@ class CameraEngineVideoEncoder {
     
     func appendBuffer(sampleBuffer: CMSampleBuffer!, isVideo: Bool) {
         if self.assetWriter.status == AVAssetWriterStatus.Unknown {
+            if !isVideo {
+                return
+            }
             let startTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
             self.assetWriter.startWriting()
             self.assetWriter.startSessionAtSourceTime(startTime)
