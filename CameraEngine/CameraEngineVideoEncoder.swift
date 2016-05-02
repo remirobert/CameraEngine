@@ -155,24 +155,24 @@ class CameraEngineVideoEncoder {
     }
     
     func appendBuffer(sampleBuffer: CMSampleBuffer!, isVideo: Bool) {
-        if self.assetWriter.status == AVAssetWriterStatus.Unknown {
-            if !isVideo {
-                return
+	
+	if CMSampleBufferDataIsReady(sampleBuffer) {
+            if self.assetWriter.status == AVAssetWriterStatus.Unknown {
+                let startTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+                self.assetWriter.startWriting()
+                self.assetWriter.startSessionAtSourceTime(startTime) 
+	    }
+            if isVideo {
+                if self.videoInputWriter.readyForMoreMediaData {
+                    self.videoInputWriter.appendSampleBuffer(sampleBuffer)
+                }
             }
-            let startTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-            self.assetWriter.startWriting()
-            self.assetWriter.startSessionAtSourceTime(startTime)
-        }
-        if isVideo {
-            if self.videoInputWriter.readyForMoreMediaData {
-                self.videoInputWriter.appendSampleBuffer(sampleBuffer)
+            else {
+                if self.audioInputWriter.readyForMoreMediaData {
+                    self.audioInputWriter.appendSampleBuffer(sampleBuffer)
+                }
             }
-        }
-        else {
-            if self.audioInputWriter.readyForMoreMediaData {
-                self.audioInputWriter.appendSampleBuffer(sampleBuffer)
-            }
-        }
+	}
     }
     
     func progressCurrentBuffer(sampleBuffer: CMSampleBuffer) -> Float64 {
