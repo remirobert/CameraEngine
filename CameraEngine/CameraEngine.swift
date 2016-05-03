@@ -305,6 +305,15 @@ public class CameraEngine: NSObject {
         }
     }
     
+    var currentDevice: AVCaptureDevicePosition {
+        get {
+            return self.cameraDevice.currentPosition
+        }
+        set {
+            self.changeCurrentDevice(newValue)
+        }
+    }
+    
     //MARK: Device I/O configuration
     
     private func configureInputDevice() {
