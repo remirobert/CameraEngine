@@ -305,7 +305,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    var currentDevice: AVCaptureDevicePosition {
+    public var currentDevice: AVCaptureDevicePosition {
         get {
             return self.cameraDevice.currentPosition
         }
