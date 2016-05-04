@@ -5,6 +5,7 @@
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/remirobert/CameraEngine/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/v/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=CameraEngine)&nbsp;
+[![Build Status](https://travis-ci.org/remirobert/CameraEngine.svg?branch=master)](https://travis-ci.org/remirobert/CameraEngine)
 [![CocoaPods](http://img.shields.io/cocoapods/p/CameraEngine.svg?style=flat)](http://cocoapods.org/?q=CameraEngine)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%208%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 [![codebeat badge](https://codebeat.co/badges/fcf16e2f-fe4e-4d4d-abb4-968e71c7d9f2)](https://codebeat.co/projects/github-com-remirobert-cameraengine)&nbsp;
