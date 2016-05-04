@@ -47,7 +47,7 @@
 #### Carthage
 
 - Add `github "remirobert/CameraEngine"` to your Cartfile.
-- Run `carthage update --platform ios` and add the framework to your project.
+- Run `carthage update` and add the framework to your project.
 - import CameraEngine
 
 
