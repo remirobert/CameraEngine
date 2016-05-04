@@ -181,6 +181,17 @@ public class CameraEngine: NSObject {
         }
     }
     
+    private var _rotationCamera = false
+    public var rotationCamera: Bool {
+        get {
+            return _rotationCamera
+        }
+        set {
+            _rotationCamera = newValue
+            self.handleDeviceOrientation()
+        }
+    }
+    
     public var isRecording: Bool {
         get {
             return self.cameraOutput.isRecording
@@ -237,9 +248,15 @@ public class CameraEngine: NSObject {
     //MARK: Device management
     
     private func handleDeviceOrientation() {
-        UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
-        NSNotificationCenter.defaultCenter().addObserverForName(UIDeviceOrientationDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (_) -> Void in
-            self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+        if self.rotationCamera {
+            UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+            NSNotificationCenter.defaultCenter().addObserverForName(UIDeviceOrientationDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (_) -> Void in
+                self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+            }
+        }
+        else {
+            UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
         }
     }
     
