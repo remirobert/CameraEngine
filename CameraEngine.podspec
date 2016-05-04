@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.ios.deployment_target = "8.0"
 
-  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "v0.9.1" }
+  s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "0.9.1" }
   s.source_files  = "source", "CameraEngine/*"
 
 end
