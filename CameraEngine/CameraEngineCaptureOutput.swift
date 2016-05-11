@@ -41,7 +41,10 @@ class CameraEngineCaptureOutput: NSObject {
     var blockCompletionProgress: blockCompletionProgressRecording?
     
     func capturePhoto(blockCompletion: blockCompletionCapturePhoto) {
-        let connectionVideo = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo)
+        guard let connectionVideo  = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo) else {
+            blockCompletion(image: nil, error: nil)
+            return
+        }
         connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
         
         self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connectionVideo) { (sampleBuffer: CMSampleBuffer!, err: NSError!) -> Void in
