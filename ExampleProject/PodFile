@@ -1,7 +1,8 @@
 use_frameworks!
 
-pod 'CameraEngine', '~> 0.9'
-
-pod 'PBJVideoPlayer'
-pod 'FCFileManager'
-pod 'FLAnimatedImage'
+target 'CameraEngineExample' do
+  pod 'CameraEngine', '~> 0.9'
+  pod 'PBJVideoPlayer'
+  pod 'FCFileManager'
+  pod 'FLAnimatedImage'
+end
