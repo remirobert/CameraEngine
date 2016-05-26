@@ -194,6 +194,8 @@ class ViewController: UIViewController {
                                         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("previewController")
                                         (controller as! PreviewViewController).media = Media.GIF(url: url)
                                         self.presentViewController(controller, animated: true, completion: nil)
+                                        self.frames.removeAll()
+                                        self.labelModeCapture.text = "0"
                                     })
                                 }
                             })
