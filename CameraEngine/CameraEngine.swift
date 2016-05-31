@@ -204,7 +204,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    var isAdjustingFocus: Bool {
+    public var isAdjustingFocus: Bool {
         get {
             if let `captureDevice` = captureDevice {
                 return captureDevice.adjustingFocus
@@ -214,7 +214,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    var isAdjustingExposure: Bool {
+    public var isAdjustingExposure: Bool {
         get {
             if let `captureDevice` = captureDevice {
                 return captureDevice.adjustingExposure
@@ -224,7 +224,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    var isAdjustingWhiteBalance: Bool {
+    public var isAdjustingWhiteBalance: Bool {
         get {
             if let `captureDevice` = captureDevice {
                 return captureDevice.adjustingWhiteBalance
