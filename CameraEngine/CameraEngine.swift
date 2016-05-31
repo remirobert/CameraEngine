@@ -192,9 +192,45 @@ public class CameraEngine: NSObject {
         }
     }
     
+    public var captureDevice: AVCaptureDevice? {
+        get {
+            return cameraDevice.currentDevice
+        }
+    }
+    
     public var isRecording: Bool {
         get {
             return self.cameraOutput.isRecording
+        }
+    }
+    
+    var isAdjustingFocus: Bool {
+        get {
+            if let `captureDevice` = captureDevice {
+                return captureDevice.adjustingFocus
+            }
+            
+            return false
+        }
+    }
+    
+    var isAdjustingExposure: Bool {
+        get {
+            if let `captureDevice` = captureDevice {
+                return captureDevice.adjustingExposure
+            }
+            
+            return false
+        }
+    }
+    
+    var isAdjustingWhiteBalance: Bool {
+        get {
+            if let `captureDevice` = captureDevice {
+                return captureDevice.adjustingWhiteBalance
+            }
+            
+            return false
         }
     }
     
