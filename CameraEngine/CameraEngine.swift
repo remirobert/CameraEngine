@@ -270,14 +270,18 @@ public class CameraEngine: NSObject {
     //MARK: Session management
     
     public func startSession() {
+        let session = self.session
+        
         dispatch_async(self.sessionQueue) { () -> Void in
-            self.session.startRunning()
+            session.startRunning()
         }
     }
     
     public func stopSession() {
+        let session = self.session
+        
         dispatch_async(self.sessionQueue) { () -> Void in
-            self.session.stopRunning()
+            session.stopRunning()
         }
     }
     
