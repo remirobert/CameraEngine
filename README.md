@@ -207,6 +207,13 @@ To run the example projet, run `pod install`, because it uses the current prod v
 
 <img src="http://i.giphy.com/mMkiMqylxW2bK.gif" />
 
+## Contributors 🍻
+
+ - [eyaldar](https://github.com/eyaldar)
+ - [davidlondono](https://github.com/davidlondono)
+ - [patthehuman](https://github.com/patthehuman)
+ - [jnoh](https://github.com/jnoh)
+
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.
 
