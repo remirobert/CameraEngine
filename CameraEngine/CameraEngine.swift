@@ -411,10 +411,18 @@ public extension CameraEngine {
                 do {
                     try currentDevice.lockForConfiguration()
                     currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-                    currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+                    if currentDevice.focusMode == AVCaptureFocusMode.Locked {
+                        currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+                    } else {
+                        currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
+                    }
                     
                     if currentDevice.isExposureModeSupported(AVCaptureExposureMode.AutoExpose) {
-                        currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+                        if currentDevice.exposureMode == AVCaptureExposureMode.Locked {
+                            currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+                        } else {
+                            currentDevice.exposureMode = AVCaptureExposureMode.ContinuousAutoExposure;
+                        }
                     }
                     currentDevice.unlockForConfiguration()
                 }
