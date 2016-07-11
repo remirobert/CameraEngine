@@ -270,5 +270,18 @@ class ViewController: UIViewController {
         self.cameraEngine.blockCompletionCodeDetection = { codeObject in
             print("code object value : \(codeObject.stringValue)")
         }
+        
+        let twoFingerPinch = UIPinchGestureRecognizer(target: self, action: #selector(ViewController.onTwoFingerPinch(_:)))
+        self.view.addGestureRecognizer(twoFingerPinch)
+        self.view.userInteractionEnabled = true
+    }
+    
+    @objc func onTwoFingerPinch(recognizer: UIPinchGestureRecognizer) {
+        let maxZoom: CGFloat = 6.0
+        let pinchVelocityDividerFactor: CGFloat = 5.0
+        if recognizer.state == .Changed {
+            let desiredZoomFactor = min(maxZoom, cameraEngine.cameraZoomFactor + atan2(recognizer.velocity, pinchVelocityDividerFactor))
+            cameraEngine.cameraZoomFactor = desiredZoomFactor
+        }
     }
 }

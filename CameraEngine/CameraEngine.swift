@@ -157,6 +157,23 @@ public class CameraEngine: NSObject {
         }
     }
     
+    private var _cameraZoomFactor: CGFloat = 1.0
+    public var cameraZoomFactor: CGFloat! {
+        get {
+            if let `captureDevice` = captureDevice {
+                _cameraZoomFactor = captureDevice.videoZoomFactor
+            }
+            
+            return self._cameraZoomFactor
+        }
+        set {
+            let newZoomFactor = self.cameraDevice.changeCurrentZoomFactor(newValue)
+            if newZoomFactor > 0 {
+                self._cameraZoomFactor = newZoomFactor
+            }
+        }
+    }
+    
     public var blockCompletionBuffer: blockCompletionOutputBuffer? {
         didSet {
             self.cameraOutput.blockCompletionBuffer = self.blockCompletionBuffer

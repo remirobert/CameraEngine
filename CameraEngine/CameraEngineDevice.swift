@@ -62,6 +62,24 @@ class CameraEngineDevice {
         }
     }
     
+    func changeCurrentZoomFactor(newFactor: CGFloat) -> CGFloat {
+        var zoom: CGFloat = 1.0
+        if let currentDevice = self.currentDevice {
+            do {
+                try currentDevice.lockForConfiguration()
+                zoom = max(1.0, min(newFactor, currentDevice.activeFormat.videoMaxZoomFactor))
+                currentDevice.videoZoomFactor = zoom
+                currentDevice.unlockForConfiguration()
+            }
+            catch {
+                zoom = -1.0
+                fatalError("[CameraEngine] error, impossible to lock configuration device")
+            }
+        }
+        
+        return zoom
+    }
+    
     func changeCurrentDevice(position: AVCaptureDevicePosition) {
         self.currentPosition = position
         switch position {
