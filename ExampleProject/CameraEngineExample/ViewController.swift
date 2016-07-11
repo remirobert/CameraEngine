@@ -252,6 +252,7 @@ class ViewController: UIViewController {
         self.labelDuration.hidden = true
         
         self.cameraEngine.startSession()
+        cameraEngine.sessionPresset = .Photo
         
         self.cameraEngine.blockCompletionProgress = { progress in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -274,6 +275,18 @@ class ViewController: UIViewController {
         let twoFingerPinch = UIPinchGestureRecognizer(target: self, action: #selector(ViewController.onTwoFingerPinch(_:)))
         self.view.addGestureRecognizer(twoFingerPinch)
         self.view.userInteractionEnabled = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        cameraEngine.rotationCamera = true
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        cameraEngine.rotationCamera = false
     }
     
     @objc func onTwoFingerPinch(recognizer: UIPinchGestureRecognizer) {
