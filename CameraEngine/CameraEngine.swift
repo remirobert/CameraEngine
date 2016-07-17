@@ -306,13 +306,17 @@ public class CameraEngine: NSObject {
     
     private func handleDeviceOrientation() {
         if self.rotationCamera {
-            UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+			if (!UIDevice.currentDevice().generatesDeviceOrientationNotifications) {
+				UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+			}
             NSNotificationCenter.defaultCenter().addObserverForName(UIDeviceOrientationDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (_) -> Void in
                 self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
             }
         }
         else {
-            UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+			if (UIDevice.currentDevice().generatesDeviceOrientationNotifications) {
+				UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+			}
             NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
         }
     }
