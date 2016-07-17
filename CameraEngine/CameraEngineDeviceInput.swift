@@ -20,6 +20,7 @@ class CameraEngineDeviceInput {
     private var micDeviceInput: AVCaptureDeviceInput?
     
     func configureInputCamera(session: AVCaptureSession, device: AVCaptureDevice) throws {
+		session.beginConfiguration()
         let possibleCameraInput: AnyObject? = try AVCaptureDeviceInput(device: device)
         if let cameraInput = possibleCameraInput as? AVCaptureDeviceInput {
             if let currentDeviceInput = self.cameraDeviceInput {
@@ -33,6 +34,7 @@ class CameraEngineDeviceInput {
                 throw CameraEngineDeviceInputErrorType.UnableToAddCamera
             }
         }
+		session.commitConfiguration()
     }
     
     func configureInputMic(session: AVCaptureSession, device: AVCaptureDevice) throws {
