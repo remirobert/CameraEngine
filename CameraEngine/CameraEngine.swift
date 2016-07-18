@@ -434,8 +434,7 @@ public extension CameraEngine {
                 do {
                     try currentDevice.lockForConfiguration()
 					
-					if (performFocus)
-					{
+					if performFocus {
 						currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
 						if currentDevice.focusMode == AVCaptureFocusMode.Locked {
 							currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
