@@ -427,18 +427,25 @@ public extension CameraEngine {
     
     public func focus(atPoint: CGPoint) {
         if let currentDevice = self.cameraDevice.currentDevice {
-            if currentDevice.isFocusModeSupported(AVCaptureFocusMode.AutoFocus) && currentDevice.focusPointOfInterestSupported {
+			let performFocus = currentDevice.isFocusModeSupported(.AutoFocus) && currentDevice.focusPointOfInterestSupported
+			let performExposure = currentDevice.isExposureModeSupported(.AutoExpose) && currentDevice.exposurePointOfInterestSupported
+            if performFocus || performExposure {
                 let focusPoint = self.previewLayer.captureDevicePointOfInterestForPoint(atPoint)
                 do {
                     try currentDevice.lockForConfiguration()
-                    currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-                    if currentDevice.focusMode == AVCaptureFocusMode.Locked {
-                        currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
-                    } else {
-                        currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
-                    }
-                    
-                    if currentDevice.isExposureModeSupported(AVCaptureExposureMode.AutoExpose) {
+					
+					if (performFocus)
+					{
+						currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+						if currentDevice.focusMode == AVCaptureFocusMode.Locked {
+							currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+						} else {
+							currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
+						}
+					}
+					
+                    if performExposure {
+						currentDevice.exposurePointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
                         if currentDevice.exposureMode == AVCaptureExposureMode.Locked {
                             currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
                         } else {
