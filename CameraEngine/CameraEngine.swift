@@ -306,13 +306,17 @@ public class CameraEngine: NSObject {
     
     private func handleDeviceOrientation() {
         if self.rotationCamera {
-            UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+			if (!UIDevice.currentDevice().generatesDeviceOrientationNotifications) {
+				UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+			}
             NSNotificationCenter.defaultCenter().addObserverForName(UIDeviceOrientationDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (_) -> Void in
                 self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
             }
         }
         else {
-            UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+			if (UIDevice.currentDevice().generatesDeviceOrientationNotifications) {
+				UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+			}
             NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
         }
     }
@@ -423,18 +427,24 @@ public extension CameraEngine {
     
     public func focus(atPoint: CGPoint) {
         if let currentDevice = self.cameraDevice.currentDevice {
-            if currentDevice.isFocusModeSupported(AVCaptureFocusMode.AutoFocus) && currentDevice.focusPointOfInterestSupported {
+			let performFocus = currentDevice.isFocusModeSupported(.AutoFocus) && currentDevice.focusPointOfInterestSupported
+			let performExposure = currentDevice.isExposureModeSupported(.AutoExpose) && currentDevice.exposurePointOfInterestSupported
+            if performFocus || performExposure {
                 let focusPoint = self.previewLayer.captureDevicePointOfInterestForPoint(atPoint)
                 do {
                     try currentDevice.lockForConfiguration()
-                    currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-                    if currentDevice.focusMode == AVCaptureFocusMode.Locked {
-                        currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
-                    } else {
-                        currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
-                    }
-                    
-                    if currentDevice.isExposureModeSupported(AVCaptureExposureMode.AutoExpose) {
+					
+					if performFocus {
+						currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+						if currentDevice.focusMode == AVCaptureFocusMode.Locked {
+							currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+						} else {
+							currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
+						}
+					}
+					
+                    if performExposure {
+						currentDevice.exposurePointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
                         if currentDevice.exposureMode == AVCaptureExposureMode.Locked {
                             currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
                         } else {
@@ -458,6 +468,10 @@ public extension CameraEngine {
     public func capturePhoto(blockCompletion: blockCompletionCapturePhoto) {
         self.cameraOutput.capturePhoto(blockCompletion)
     }
+	
+	public func capturePhotoBuffer(blockCompletion: blockCompletionCapturePhotoBuffer) {
+		self.cameraOutput.capturePhotoBuffer(blockCompletion)
+	}
     
     public func startRecordingVideo(url: NSURL, blockCompletion: blockCompletionCaptureVideo) {
         if self.isRecording == false {
