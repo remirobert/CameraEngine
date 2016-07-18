@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 public typealias blockCompletionCapturePhoto = (image: UIImage?, error: NSError?) -> (Void)
+public typealias blockCompletionCapturePhotoBuffer = (sampleBuffer: CMSampleBuffer?, error: NSError?) -> (Void)
 public typealias blockCompletionCaptureVideo = (url: NSURL?, error: NSError?) -> (Void)
 public typealias blockCompletionOutputBuffer = (sampleBuffer: CMSampleBuffer) -> (Void)
 public typealias blockCompletionProgressRecording = (duration: Float64) -> (Void)
@@ -39,7 +40,17 @@ class CameraEngineCaptureOutput: NSObject {
     var isRecording = false
     var blockCompletionBuffer: blockCompletionOutputBuffer?
     var blockCompletionProgress: blockCompletionProgressRecording?
-    
+	
+	func capturePhotoBuffer(blockCompletion: blockCompletionCapturePhotoBuffer) {
+		guard let connectionVideo  = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo) else {
+			blockCompletion(sampleBuffer: nil, error: nil)
+			return
+		}
+		connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+		
+		self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connectionVideo, completionHandler: blockCompletion)
+	}
+	
     func capturePhoto(blockCompletion: blockCompletionCapturePhoto) {
         guard let connectionVideo  = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo) else {
             blockCompletion(image: nil, error: nil)

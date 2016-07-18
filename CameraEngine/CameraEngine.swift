@@ -462,6 +462,10 @@ public extension CameraEngine {
     public func capturePhoto(blockCompletion: blockCompletionCapturePhoto) {
         self.cameraOutput.capturePhoto(blockCompletion)
     }
+	
+	public func capturePhotoBuffer(blockCompletion: blockCompletionCapturePhotoBuffer) {
+		self.cameraOutput.capturePhotoBuffer(blockCompletion)
+	}
     
     public func startRecordingVideo(url: NSURL, blockCompletion: blockCompletionCaptureVideo) {
         if self.isRecording == false {
