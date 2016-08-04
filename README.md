@@ -58,6 +58,10 @@
 - import CameraEngine
 
 
+To add the Framework, you can also create a **workspace** for your project, then add the **CameraEngine.xcodeproj**, and the **CameraEngine**, then you should be able to compile the framework, and import it in your app project.
+
+**CameraEngine** supports *swift3*, see the development branch for a swift 3 integration.
+
 ## :rocket: Quick start
 
 > First let's init the and start the camera session. You can call that in the viewDidLoad, or in the appDelegate.
