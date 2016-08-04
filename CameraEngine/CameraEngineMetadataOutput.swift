@@ -89,17 +89,17 @@ class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelega
         for metadataObject in metadataObjects as! [AVMetadataObject] {
             switch metadataObject.type {
             case AVMetadataObjectTypeFace:
-                if let block = self.blockCompletionFaceDetection where self.currentMetadataOutput == .face {
+                if let block = self.blockCompletionFaceDetection, self.currentMetadataOutput == .face {
                     let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
                     block(faceObject: transformedMetadataObject as! AVMetadataFaceObject)
                 }
             case AVMetadataObjectTypeQRCode:
-                if let block = self.blockCompletionCodeDetection where self.currentMetadataOutput == .qrCode {
+                if let block = self.blockCompletionCodeDetection, self.currentMetadataOutput == .qrCode {
                     let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
                     block(codeObject: transformedMetadataObject as! AVMetadataMachineReadableCodeObject)
                 }
             case AVMetadataObjectTypeUPCECode, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode39Mod43Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypePDF417Code,AVMetadataObjectTypeQRCode, AVMetadataObjectTypeAztecCode:
-                if let block = self.blockCompletionCodeDetection where self.currentMetadataOutput == .bareCode {
+                if let block = self.blockCompletionCodeDetection, self.currentMetadataOutput == .bareCode {
                     let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
                     block(codeObject: transformedMetadataObject as! AVMetadataMachineReadableCodeObject)
                 }
