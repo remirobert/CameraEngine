@@ -11,13 +11,13 @@ import ImageIO
 import MobileCoreServices
 import AVFoundation
 
-public typealias blockCompletionGifEncoder = (success: Bool, url: NSURL?) -> (Void)
+public typealias blockCompletionGifEncoder = (success: Bool, url: URL?) -> (Void)
 
 class CameraEngineGifEncoder {
     
     var blockCompletionGif: blockCompletionGifEncoder?
     
-    func createGif(fileUrl: NSURL, frames: [UIImage], delayTime: Float, loopCount: Int = 0) {
+    func createGif(_ fileUrl: URL, frames: [UIImage], delayTime: Float, loopCount: Int = 0) {
         
         let fileProperties = [kCGImagePropertyGIFDictionary as String: [
             kCGImagePropertyGIFLoopCount as String: loopCount
@@ -33,12 +33,12 @@ class CameraEngineGifEncoder {
         }
         
         for currentFrame in frames {
-            if let imageRef = currentFrame.CGImage {
-                CGImageDestinationAddImage(destination, imageRef, frameProperties as CFDictionaryRef)
+            if let imageRef = currentFrame.cgImage {
+                CGImageDestinationAddImage(destination, imageRef, frameProperties as CFDictionary)
             }
         }
         
-        CGImageDestinationSetProperties(destination, fileProperties as CFDictionaryRef)
+        CGImageDestinationSetProperties(destination, fileProperties as CFDictionary)
         
         if !CGImageDestinationFinalize(destination) {
             print("error fail finalize")

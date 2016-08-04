@@ -10,31 +10,31 @@ import UIKit
 import AVFoundation
 
 public enum CameraEngineCameraFocus {
-    case Locked
-    case AutoFocus
-    case ContinuousAutoFocus
+    case locked
+    case autoFocus
+    case continuousAutoFocus
     
     func foundationFocus() -> AVCaptureFocusMode {
         switch self {
-        case .Locked: return AVCaptureFocusMode.Locked
-        case .AutoFocus: return AVCaptureFocusMode.AutoFocus
-        case .ContinuousAutoFocus: return AVCaptureFocusMode.ContinuousAutoFocus
+        case .locked: return AVCaptureFocusMode.locked
+        case .autoFocus: return AVCaptureFocusMode.autoFocus
+        case .continuousAutoFocus: return AVCaptureFocusMode.continuousAutoFocus
         }
     }
     
     public func description() -> String {
         switch self {
-        case .Locked: return "Locked"
-        case .AutoFocus: return "AutoFocus"
-        case .ContinuousAutoFocus: return "ContinuousAutoFocus"
+        case .locked: return "Locked"
+        case .autoFocus: return "AutoFocus"
+        case .continuousAutoFocus: return "ContinuousAutoFocus"
         }
     }
     
     public static func availableFocus() -> [CameraEngineCameraFocus] {
         return [
-            .Locked,
-            .AutoFocus,
-            .ContinuousAutoFocus
+            .locked,
+            .autoFocus,
+            .continuousAutoFocus
         ]
     }
 }
@@ -45,9 +45,9 @@ class CameraEngineDevice {
     private var frontCameraDevice: AVCaptureDevice!
     var micCameraDevice: AVCaptureDevice!
     var currentDevice: AVCaptureDevice?
-    var currentPosition: AVCaptureDevicePosition = .Unspecified
+    var currentPosition: AVCaptureDevicePosition = .unspecified
     
-    func changeCameraFocusMode(focusMode: CameraEngineCameraFocus) {
+    func changeCameraFocusMode(_ focusMode: CameraEngineCameraFocus) {
         if let currentDevice = self.currentDevice {
             do {
                 try currentDevice.lockForConfiguration()
@@ -62,7 +62,7 @@ class CameraEngineDevice {
         }
     }
     
-    func changeCurrentZoomFactor(newFactor: CGFloat) -> CGFloat {
+    func changeCurrentZoomFactor(_ newFactor: CGFloat) -> CGFloat {
         var zoom: CGFloat = 1.0
         if let currentDevice = self.currentDevice {
             do {
@@ -80,34 +80,34 @@ class CameraEngineDevice {
         return zoom
     }
     
-    func changeCurrentDevice(position: AVCaptureDevicePosition) {
+    func changeCurrentDevice(_ position: AVCaptureDevicePosition) {
         self.currentPosition = position
         switch position {
-        case .Back: self.currentDevice = self.backCameraDevice
-        case .Front: self.currentDevice = self.frontCameraDevice
-        case .Unspecified: self.currentDevice = nil
+        case .back: self.currentDevice = self.backCameraDevice
+        case .front: self.currentDevice = self.frontCameraDevice
+        case .unspecified: self.currentDevice = nil
         }
     }
     
     private func configureDeviceCamera() {
-        let availableCameraDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
+        let availableCameraDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
         for device in availableCameraDevices as! [AVCaptureDevice] {
-            if device.position == .Back {
+            if device.position == .back {
                 self.backCameraDevice = device
             }
-            else if device.position == .Front {
+            else if device.position == .front {
                 self.frontCameraDevice = device
             }
         }        
     }
     
     private func configureDeviceMic() {
-        self.micCameraDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeAudio)
+        self.micCameraDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
     }
     
     init() {
         self.configureDeviceCamera()
         self.configureDeviceMic()
-        self.changeCurrentDevice(.Back)
+        self.changeCurrentDevice(.back)
     }
 }

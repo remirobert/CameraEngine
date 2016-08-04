@@ -13,16 +13,16 @@ public typealias blockCompletionDetectionFace = (faceObject: AVMetadataFaceObjec
 public typealias blockCompletionDetectionCode = (codeObject: AVMetadataMachineReadableCodeObject) -> (Void)
 
 public enum CameraEngineCaptureOutputDetection {
-    case Face
-    case QRCode
-    case BareCode
-    case None
+    case face
+    case qrCode
+    case bareCode
+    case none
     
     func foundationCaptureOutputDetection() -> [AnyObject] {
         switch self {
-        case .Face: return [AVMetadataObjectTypeFace]
-        case .QRCode: return [AVMetadataObjectTypeQRCode]
-        case .BareCode: return [
+        case .face: return [AVMetadataObjectTypeFace]
+        case .qrCode: return [AVMetadataObjectTypeQRCode]
+        case .bareCode: return [
             AVMetadataObjectTypeUPCECode,
             AVMetadataObjectTypeCode39Code,
             AVMetadataObjectTypeCode39Mod43Code,
@@ -34,25 +34,25 @@ public enum CameraEngineCaptureOutputDetection {
             AVMetadataObjectTypeQRCode,
             AVMetadataObjectTypeAztecCode
             ]
-        case .None: return []
+        case .none: return []
         }
     }
     
     public static func availableDetection() -> [CameraEngineCaptureOutputDetection] {
         return [
-            .Face,
-            .QRCode,
-            .BareCode,
-            .None
+            .face,
+            .qrCode,
+            .bareCode,
+            .none
         ]
     }
     
     public func description() -> String {
         switch self {
-        case .Face: return "Face detection"
-        case .QRCode: return "QRCode detection"
-        case .BareCode: return "BareCode detection"
-        case .None: return "No detection"
+        case .face: return "Face detection"
+        case .qrCode: return "QRCode detection"
+        case .bareCode: return "BareCode detection"
+        case .none: return "No detection"
         }
     }
 }
@@ -60,7 +60,7 @@ public enum CameraEngineCaptureOutputDetection {
 class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     private var metadataOutput:AVCaptureMetadataOutput?
-    private var currentMetadataOutput: CameraEngineCaptureOutputDetection = .None
+    private var currentMetadataOutput: CameraEngineCaptureOutputDetection = .none
     var previewLayer: AVCaptureVideoPreviewLayer?
     
     var blockCompletionFaceDetection: blockCompletionDetectionFace?
@@ -69,7 +69,7 @@ class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelega
     var shapeLayer = CAShapeLayer()
     var layer2 = CALayer()
     
-    func configureMetadataOutput(session: AVCaptureSession, sessionQueue: dispatch_queue_t, metadataType: CameraEngineCaptureOutputDetection) {
+    func configureMetadataOutput(_ session: AVCaptureSession, sessionQueue: DispatchQueue, metadataType: CameraEngineCaptureOutputDetection) {
         if self.metadataOutput == nil {
             self.metadataOutput = AVCaptureMetadataOutput()
             self.metadataOutput?.setMetadataObjectsDelegate(self, queue: sessionQueue)
@@ -81,7 +81,7 @@ class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelega
         self.currentMetadataOutput = metadataType
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, from connection: AVCaptureConnection!) {
         guard let previewLayer = self.previewLayer else {
             return
         }
@@ -89,18 +89,18 @@ class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelega
         for metadataObject in metadataObjects as! [AVMetadataObject] {
             switch metadataObject.type {
             case AVMetadataObjectTypeFace:
-                if let block = self.blockCompletionFaceDetection where self.currentMetadataOutput == .Face {
-                    let transformedMetadataObject = previewLayer.transformedMetadataObjectForMetadataObject(metadataObject)
+                if let block = self.blockCompletionFaceDetection where self.currentMetadataOutput == .face {
+                    let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
                     block(faceObject: transformedMetadataObject as! AVMetadataFaceObject)
                 }
             case AVMetadataObjectTypeQRCode:
-                if let block = self.blockCompletionCodeDetection where self.currentMetadataOutput == .QRCode {
-                    let transformedMetadataObject = previewLayer.transformedMetadataObjectForMetadataObject(metadataObject)
+                if let block = self.blockCompletionCodeDetection where self.currentMetadataOutput == .qrCode {
+                    let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
                     block(codeObject: transformedMetadataObject as! AVMetadataMachineReadableCodeObject)
                 }
             case AVMetadataObjectTypeUPCECode, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode39Mod43Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypePDF417Code,AVMetadataObjectTypeQRCode, AVMetadataObjectTypeAztecCode:
-                if let block = self.blockCompletionCodeDetection where self.currentMetadataOutput == .BareCode {
-                    let transformedMetadataObject = previewLayer.transformedMetadataObjectForMetadataObject(metadataObject)
+                if let block = self.blockCompletionCodeDetection where self.currentMetadataOutput == .bareCode {
+                    let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
                     block(codeObject: transformedMetadataObject as! AVMetadataMachineReadableCodeObject)
                 }
             default:break

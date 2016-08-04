@@ -79,11 +79,11 @@ public enum CameraEngineVideoEncoderEncoderSettings: String {
 
 extension UIDevice {
     static func orientationTransformation() -> CGFloat {
-        switch UIDevice.currentDevice().orientation {
-        case .Portrait: return CGFloat(M_PI / 2)
-        case .PortraitUpsideDown: return CGFloat(M_PI / 4)
-        case .LandscapeRight: return CGFloat(M_PI)
-        case .LandscapeLeft: return CGFloat(M_PI * 2)
+        switch UIDevice.current.orientation {
+        case .portrait: return CGFloat(M_PI / 2)
+        case .portraitUpsideDown: return CGFloat(M_PI / 4)
+        case .landscapeRight: return CGFloat(M_PI)
+        case .landscapeLeft: return CGFloat(M_PI * 2)
         default: return 0
         }
     }
@@ -100,14 +100,14 @@ class CameraEngineVideoEncoder {
         return CameraEngineVideoEncoderEncoderSettings.Preset1920x1080.configuration()
     }()
     
-    private func initVideoEncoder(url: NSURL) {
+    private func initVideoEncoder(_ url: URL) {
         guard let presetSettingEncoder = self.presetSettingEncoder else {
             print("[Camera engine] presetSettingEncoder = nil")
             return
         }
 
         do {
-            self.assetWriter = try AVAssetWriter(URL: url, fileType: AVFileTypeMPEG4)
+            self.assetWriter = try AVAssetWriter(url: url, fileType: AVFileTypeMPEG4)
         }
         catch {
             fatalError("error init assetWriter")
@@ -116,66 +116,66 @@ class CameraEngineVideoEncoder {
         let videoOutputSettings = presetSettingEncoder.videoSettings
         let audioOutputSettings = presetSettingEncoder.audioSettings
         
-        guard self.assetWriter.canApplyOutputSettings(videoOutputSettings, forMediaType: AVMediaTypeVideo) else {
+        guard self.assetWriter.canApply(outputSettings: videoOutputSettings, forMediaType: AVMediaTypeVideo) else {
             fatalError("Negative [VIDEO] : Can't apply the Output settings...")
         }
-        guard self.assetWriter.canApplyOutputSettings(audioOutputSettings, forMediaType: AVMediaTypeAudio) else {
+        guard self.assetWriter.canApply(outputSettings: audioOutputSettings, forMediaType: AVMediaTypeAudio) else {
             fatalError("Negative [AUDIO] : Can't apply the Output settings...")
         }
 
         self.videoInputWriter = AVAssetWriterInput(mediaType: AVMediaTypeVideo, outputSettings: videoOutputSettings)
         self.videoInputWriter.expectsMediaDataInRealTime = true
-        self.videoInputWriter.transform = CGAffineTransformMakeRotation(UIDevice.orientationTransformation())
+        self.videoInputWriter.transform = CGAffineTransform(rotationAngle: UIDevice.orientationTransformation())
         
         self.audioInputWriter = AVAssetWriterInput(mediaType: AVMediaTypeAudio, outputSettings: audioOutputSettings)
         self.audioInputWriter.expectsMediaDataInRealTime = true
         
-        if self.assetWriter.canAddInput(self.videoInputWriter) {
-            self.assetWriter.addInput(self.videoInputWriter)
+        if self.assetWriter.canAdd(self.videoInputWriter) {
+            self.assetWriter.add(self.videoInputWriter)
         }
-        if self.assetWriter.canAddInput(self.audioInputWriter) {
-            self.assetWriter.addInput(self.audioInputWriter)
+        if self.assetWriter.canAdd(self.audioInputWriter) {
+            self.assetWriter.add(self.audioInputWriter)
         }
     }
     
-    func startWriting(url: NSURL) {
+    func startWriting(_ url: URL) {
         self.startTime = CMClockGetTime(CMClockGetHostTimeClock())
         self.initVideoEncoder(url)
     }
     
-    func stopWriting(blockCompletion: blockCompletionCaptureVideo?) {
+    func stopWriting(_ blockCompletion: blockCompletionCaptureVideo?) {
         self.videoInputWriter.markAsFinished()
         self.audioInputWriter.markAsFinished()
         
-        self.assetWriter.finishWritingWithCompletionHandler { () -> Void in
+        self.assetWriter.finishWriting { () -> Void in
             if let blockCompletion = blockCompletion {
                 blockCompletion(url: self.assetWriter.outputURL, error: nil)
             }
         }
     }
     
-    func appendBuffer(sampleBuffer: CMSampleBuffer!, isVideo: Bool) {
+    func appendBuffer(_ sampleBuffer: CMSampleBuffer!, isVideo: Bool) {
 	
 	if CMSampleBufferDataIsReady(sampleBuffer) {
-            if self.assetWriter.status == AVAssetWriterStatus.Unknown {
+            if self.assetWriter.status == AVAssetWriterStatus.unknown {
                 let startTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
                 self.assetWriter.startWriting()
-                self.assetWriter.startSessionAtSourceTime(startTime) 
+                self.assetWriter.startSession(atSourceTime: startTime) 
 	    }
             if isVideo {
-                if self.videoInputWriter.readyForMoreMediaData {
-                    self.videoInputWriter.appendSampleBuffer(sampleBuffer)
+                if self.videoInputWriter.isReadyForMoreMediaData {
+                    self.videoInputWriter.append(sampleBuffer)
                 }
             }
             else {
-                if self.audioInputWriter.readyForMoreMediaData {
-                    self.audioInputWriter.appendSampleBuffer(sampleBuffer)
+                if self.audioInputWriter.isReadyForMoreMediaData {
+                    self.audioInputWriter.append(sampleBuffer)
                 }
             }
 	}
     }
     
-    func progressCurrentBuffer(sampleBuffer: CMSampleBuffer) -> Float64 {
+    func progressCurrentBuffer(_ sampleBuffer: CMSampleBuffer) -> Float64 {
         let currentTimestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         let currentTime = CMTimeGetSeconds(CMTimeSubtract(currentTimestamp, self.startTime))
         return currentTime
