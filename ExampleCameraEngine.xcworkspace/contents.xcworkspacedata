@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CameraEngineExample.xcodeproj">
+      location = "group:CameraEngine.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "container:CameraEngineExample/CameraEngineExample.xcodeproj">
    </FileRef>
 </Workspace>

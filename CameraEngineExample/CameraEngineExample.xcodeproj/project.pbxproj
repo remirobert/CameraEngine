@@ -12,14 +12,7 @@
 		BB3B05D81D8C242A00165E2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB3B05D61D8C242A00165E2C /* Main.storyboard */; };
 		BB3B05DA1D8C242A00165E2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB3B05D91D8C242A00165E2C /* Assets.xcassets */; };
 		BB3B05DD1D8C242A00165E2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB3B05DB1D8C242A00165E2C /* LaunchScreen.storyboard */; };
-		BB3B05ED1D8C243B00165E2C /* CameraEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05E51D8C243B00165E2C /* CameraEngine.swift */; };
-		BB3B05EE1D8C243B00165E2C /* CameraEngineCaptureOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05E61D8C243B00165E2C /* CameraEngineCaptureOutput.swift */; };
-		BB3B05EF1D8C243B00165E2C /* CameraEngineDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05E71D8C243B00165E2C /* CameraEngineDevice.swift */; };
-		BB3B05F01D8C243B00165E2C /* CameraEngineDeviceInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05E81D8C243B00165E2C /* CameraEngineDeviceInput.swift */; };
-		BB3B05F11D8C243B00165E2C /* CameraEngineFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05E91D8C243B00165E2C /* CameraEngineFileManager.swift */; };
-		BB3B05F21D8C243B00165E2C /* CameraEngineGifEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05EA1D8C243B00165E2C /* CameraEngineGifEncoder.swift */; };
-		BB3B05F31D8C243B00165E2C /* CameraEngineMetadataOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05EB1D8C243B00165E2C /* CameraEngineMetadataOutput.swift */; };
-		BB3B05F41D8C243B00165E2C /* CameraEngineVideoEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05EC1D8C243B00165E2C /* CameraEngineVideoEncoder.swift */; };
+		BB9DFAD61D8C4D95001E7B35 /* CameraEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9DFAD51D8C4D95001E7B35 /* CameraEngine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,14 +23,7 @@
 		BB3B05D91D8C242A00165E2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB3B05DC1D8C242A00165E2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB3B05DE1D8C242A00165E2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB3B05E51D8C243B00165E2C /* CameraEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngine.swift; sourceTree = "<group>"; };
-		BB3B05E61D8C243B00165E2C /* CameraEngineCaptureOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineCaptureOutput.swift; sourceTree = "<group>"; };
-		BB3B05E71D8C243B00165E2C /* CameraEngineDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineDevice.swift; sourceTree = "<group>"; };
-		BB3B05E81D8C243B00165E2C /* CameraEngineDeviceInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineDeviceInput.swift; sourceTree = "<group>"; };
-		BB3B05E91D8C243B00165E2C /* CameraEngineFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineFileManager.swift; sourceTree = "<group>"; };
-		BB3B05EA1D8C243B00165E2C /* CameraEngineGifEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineGifEncoder.swift; sourceTree = "<group>"; };
-		BB3B05EB1D8C243B00165E2C /* CameraEngineMetadataOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineMetadataOutput.swift; sourceTree = "<group>"; };
-		BB3B05EC1D8C243B00165E2C /* CameraEngineVideoEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEngineVideoEncoder.swift; sourceTree = "<group>"; };
+		BB9DFAD51D8C4D95001E7B35 /* CameraEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraEngine.framework; path = "../../Library/Developer/Xcode/DerivedData/CameraEngineExample-giwblicspnhgxffyrnhtqbvmjrgc/Build/Products/Debug-iphoneos/CameraEngine.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB9DFAD61D8C4D95001E7B35 /* CameraEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +43,7 @@
 			children = (
 				BB3B05D11D8C242A00165E2C /* CameraEngineExample */,
 				BB3B05D01D8C242A00165E2C /* Products */,
+				BB9DFAD41D8C4D95001E7B35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,7 +58,6 @@
 		BB3B05D11D8C242A00165E2C /* CameraEngineExample */ = {
 			isa = PBXGroup;
 			children = (
-				BB3B05E41D8C242E00165E2C /* CameraEngine */,
 				BB3B05D21D8C242A00165E2C /* AppDelegate.swift */,
 				BB3B05D41D8C242A00165E2C /* ViewController.swift */,
 				BB3B05D61D8C242A00165E2C /* Main.storyboard */,
@@ -81,19 +68,12 @@
 			path = CameraEngineExample;
 			sourceTree = "<group>";
 		};
-		BB3B05E41D8C242E00165E2C /* CameraEngine */ = {
+		BB9DFAD41D8C4D95001E7B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BB3B05E51D8C243B00165E2C /* CameraEngine.swift */,
-				BB3B05E61D8C243B00165E2C /* CameraEngineCaptureOutput.swift */,
-				BB3B05E71D8C243B00165E2C /* CameraEngineDevice.swift */,
-				BB3B05E81D8C243B00165E2C /* CameraEngineDeviceInput.swift */,
-				BB3B05E91D8C243B00165E2C /* CameraEngineFileManager.swift */,
-				BB3B05EA1D8C243B00165E2C /* CameraEngineGifEncoder.swift */,
-				BB3B05EB1D8C243B00165E2C /* CameraEngineMetadataOutput.swift */,
-				BB3B05EC1D8C243B00165E2C /* CameraEngineVideoEncoder.swift */,
+				BB9DFAD51D8C4D95001E7B35 /* CameraEngine.framework */,
 			);
-			name = CameraEngine;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,15 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB3B05D51D8C242A00165E2C /* ViewController.swift in Sources */,
-				BB3B05F01D8C243B00165E2C /* CameraEngineDeviceInput.swift in Sources */,
 				BB3B05D31D8C242A00165E2C /* AppDelegate.swift in Sources */,
-				BB3B05EF1D8C243B00165E2C /* CameraEngineDevice.swift in Sources */,
-				BB3B05F21D8C243B00165E2C /* CameraEngineGifEncoder.swift in Sources */,
-				BB3B05F41D8C243B00165E2C /* CameraEngineVideoEncoder.swift in Sources */,
-				BB3B05EE1D8C243B00165E2C /* CameraEngineCaptureOutput.swift in Sources */,
-				BB3B05F31D8C243B00165E2C /* CameraEngineMetadataOutput.swift in Sources */,
-				BB3B05F11D8C243B00165E2C /* CameraEngineFileManager.swift in Sources */,
-				BB3B05ED1D8C243B00165E2C /* CameraEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +314,7 @@
 				BB3B05E31D8C242A00165E2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

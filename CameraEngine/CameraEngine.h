@@ -2,7 +2,7 @@
 //  CameraEngine.h
 //  CameraEngine
 //
-//  Created by Remi Robert on 12/02/16.
+//  Created by Remi Robert on 16/09/16.
 //  Copyright © 2016 Remi Robert. All rights reserved.
 //
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CameraEngine
 
 enum ModeCapture {
     case Photo
