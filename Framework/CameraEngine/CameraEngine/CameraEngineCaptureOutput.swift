@@ -29,36 +29,48 @@ extension AVCaptureVideoOrientation {
 
 class CameraEngineCaptureOutput: NSObject {
     
-    let stillCameraOutput = AVCapturePhotoOutput()
+    let stillCameraOutput = AVCaptureStillImageOutput()
     let movieFileOutput = AVCaptureMovieFileOutput()
     var captureVideoOutput = AVCaptureVideoDataOutput()
     var captureAudioOutput = AVCaptureAudioDataOutput()
     var blockCompletionVideo: blockCompletionCaptureVideo?
-    var blockCompletionPhoto: blockCompletionCapturePhoto?
     
     let videoEncoder = CameraEngineVideoEncoder()
     
     var isRecording = false
     var blockCompletionBuffer: blockCompletionOutputBuffer?
     var blockCompletionProgress: blockCompletionProgressRecording?
-    
-    func capturePhotoBuffer(settings: AVCapturePhotoSettings, _ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
+	
+	func capturePhotoBuffer(_ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
+		guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
+			blockCompletion(nil, nil)
+			return
+		}
+		connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
+		self.stillCameraOutput.captureStillImageAsynchronously(from: connectionVideo, completionHandler: blockCompletion)
+	}
+	
+    func capturePhoto(_ blockCompletion: @escaping blockCompletionCapturePhoto) {
         guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
             blockCompletion(nil, nil)
             return
         }
         connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
-        self.stillCameraOutput.capturePhoto(with: settings, delegate: self)
-    }
-    
-    func capturePhoto(settings: AVCapturePhotoSettings, _ blockCompletion: @escaping blockCompletionCapturePhoto) {
-        guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
-            blockCompletion(nil, nil)
-            return
+        
+        self.stillCameraOutput.captureStillImageAsynchronously(from: connectionVideo) { (sampleBuffer: CMSampleBuffer?, err: Error?) -> Void in
+            if let err = err {
+                blockCompletion(nil, err)
+            }
+            else {
+                if let sampleBuffer = sampleBuffer, let dataImage = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer) {
+                    let image = UIImage(data: dataImage)
+                    blockCompletion(image, nil)
+                }
+                else {
+                    blockCompletion(nil, nil)
+                }
+            }
         }
-        self.blockCompletionPhoto = blockCompletion
-        connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
-        self.stillCameraOutput.capturePhoto(with: settings, delegate: self)
     }
     
     func setPressetVideoEncoder(_ videoEncoderPresset: CameraEngineVideoEncoderEncoderSettings) {
@@ -95,23 +107,6 @@ class CameraEngineCaptureOutput: NSObject {
             session.addOutput(self.stillCameraOutput)
         }
         
-    }
-}
-
-extension CameraEngineCaptureOutput: AVCapturePhotoCaptureDelegate {
-    public func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        if let error = error {
-            self.blockCompletionPhoto?(nil, error)
-        }
-        else {
-            if let sampleBuffer = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: nil) {
-                let image = UIImage(data: dataImage)
-                self.blockCompletionPhoto?(image, nil)
-            }
-            else {
-                self.blockCompletionPhoto?(nil, nil)
-            }
-        }
     }
 }
 

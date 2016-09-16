@@ -117,6 +117,16 @@
                                     <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="muu-wT-YLT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WT3-is-sLK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8d7-bM-bQK"/>
+                                    <constraint firstAttribute="width" constant="100" id="YxG-ss-hKT"/>
+                                </constraints>
+                                <state key="normal" title="switch camera"/>
+                                <connections>
+                                    <action selector="switchCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lgr-my-RCu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -129,6 +139,8 @@
                             <constraint firstItem="79f-df-rct" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rq7-14-xQO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N8m-xu-cL6" secondAttribute="bottom" id="aIA-Rl-5W3"/>
                             <constraint firstItem="N8m-xu-cL6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="m96-sT-rHb"/>
+                            <constraint firstAttribute="trailing" secondItem="WT3-is-sLK" secondAttribute="trailing" constant="12" id="nlK-nu-ilA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WT3-is-sLK" secondAttribute="bottom" constant="20" id="u3s-sK-9Tp"/>
                         </constraints>
                     </view>
                     <connections>

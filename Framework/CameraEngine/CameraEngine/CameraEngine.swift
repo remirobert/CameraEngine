@@ -74,7 +74,6 @@ public class CameraEngine: NSObject {
     let cameraInput = CameraEngineDeviceInput()
     let cameraMetadata = CameraEngineMetadataOutput()
     let cameraGifEncoder = CameraEngineGifEncoder()
-    let capturePhotoSettings = AVCapturePhotoSettings()
     var captureDeviceIntput: AVCaptureDeviceInput?
     
     var sessionQueue: DispatchQueue = DispatchQueue(label: cameraEngineSessionQueueIdentifier)
@@ -342,19 +341,16 @@ public class CameraEngine: NSObject {
     }
     
     private func configureFlash(_ mode: AVCaptureFlashMode) {
-        if let currentDevice = self.cameraDevice.currentDevice, currentDevice.isFlashAvailable && self.capturePhotoSettings.flashMode != mode {
-            self.capturePhotoSettings.flashMode = mode
+        if let currentDevice = self.cameraDevice.currentDevice, currentDevice.isFlashAvailable && currentDevice.flashMode != mode {
+            do {
+                try currentDevice.lockForConfiguration()
+                currentDevice.flashMode = mode
+                currentDevice.unlockForConfiguration()
+            }
+            catch {
+                fatalError("[CameraEngine] error lock configuration device")
+            }
         }
-//        if let currentDevice = self.cameraDevice.currentDevice, currentDevice.isFlashAvailable && currentDevice.flashMode != mode {
-//            do {
-//                try currentDevice.lockForConfiguration()
-//                currentDevice.flashMode = mode
-//                currentDevice.unlockForConfiguration()
-//            }
-//            catch {
-//                fatalError("[CameraEngine] error lock configuration device")
-//            }
-//        }
     }
     
     private func configureTorch(_ mode: AVCaptureTorchMode) {
@@ -459,11 +455,11 @@ public extension CameraEngine {
 public extension CameraEngine {
     
     public func capturePhoto(_ blockCompletion: @escaping blockCompletionCapturePhoto) {
-        self.cameraOutput.capturePhoto(settings: self.capturePhotoSettings, blockCompletion)
+        self.cameraOutput.capturePhoto(blockCompletion)
     }
 	
 	public func capturePhotoBuffer(_ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
-        self.cameraOutput.capturePhotoBuffer(settings: self.capturePhotoSettings, blockCompletion)
+		self.cameraOutput.capturePhotoBuffer(blockCompletion)
 	}
     
     public func startRecordingVideo(_ url: URL, blockCompletion: @escaping blockCompletionCaptureVideo) {

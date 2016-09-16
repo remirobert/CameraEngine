@@ -110,6 +110,10 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func switchCamera(_ sender: AnyObject) {
+        self.cameraEngine.switchCurrentDevice()
+    }
+    
     @IBAction func takePhoto(_ sender: AnyObject) {
         switch self.mode {
         case .Photo:
@@ -152,6 +156,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         self.cameraEngine.rotationCamera = true
+        self.cameraEngine.flashMode = .on
     }
     
     override func viewDidLoad() {
