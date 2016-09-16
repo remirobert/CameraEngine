@@ -156,7 +156,6 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         self.cameraEngine.rotationCamera = true
-        self.cameraEngine.flashMode = .on
     }
     
     override func viewDidLoad() {

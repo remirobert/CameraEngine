@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 
-public enum CameraEngineDeviceInputErrorType: ErrorType {
-    case UnableToAddCamera
-    case UnableToAddMic
+public enum CameraEngineDeviceInputErrorType: Error {
+    case unableToAddCamera
+    case unableToAddMic
 }
 
 class CameraEngineDeviceInput {
@@ -19,7 +19,7 @@ class CameraEngineDeviceInput {
     private var cameraDeviceInput: AVCaptureDeviceInput?
     private var micDeviceInput: AVCaptureDeviceInput?
     
-    func configureInputCamera(session: AVCaptureSession, device: AVCaptureDevice) throws {
+    func configureInputCamera(_ session: AVCaptureSession, device: AVCaptureDevice) throws {
 		session.beginConfiguration()
         let possibleCameraInput: AnyObject? = try AVCaptureDeviceInput(device: device)
         if let cameraInput = possibleCameraInput as? AVCaptureDeviceInput {
@@ -31,13 +31,13 @@ class CameraEngineDeviceInput {
                 session.addInput(self.cameraDeviceInput)
             }
             else {
-                throw CameraEngineDeviceInputErrorType.UnableToAddCamera
+                throw CameraEngineDeviceInputErrorType.unableToAddCamera
             }
         }
 		session.commitConfiguration()
     }
     
-    func configureInputMic(session: AVCaptureSession, device: AVCaptureDevice) throws {
+    func configureInputMic(_ session: AVCaptureSession, device: AVCaptureDevice) throws {
         if self.micDeviceInput != nil {
             return
         }
@@ -46,7 +46,7 @@ class CameraEngineDeviceInput {
             session.addInput(self.micDeviceInput)
         }
         else {
-            throw CameraEngineDeviceInputErrorType.UnableToAddMic
+            throw CameraEngineDeviceInputErrorType.unableToAddMic
         }
     }
 }

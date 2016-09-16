@@ -9,76 +9,63 @@
 import UIKit
 import AVFoundation
 
-public typealias blockCompletionCapturePhoto = (image: UIImage?, error: NSError?) -> (Void)
-public typealias blockCompletionCapturePhotoBuffer = (sampleBuffer: CMSampleBuffer?, error: NSError?) -> (Void)
-public typealias blockCompletionCaptureVideo = (url: NSURL?, error: NSError?) -> (Void)
-public typealias blockCompletionOutputBuffer = (sampleBuffer: CMSampleBuffer) -> (Void)
-public typealias blockCompletionProgressRecording = (duration: Float64) -> (Void)
+public typealias blockCompletionCapturePhoto = (_ image: UIImage?, _ error: Error?) -> (Void)
+public typealias blockCompletionCapturePhotoBuffer = ((_ sampleBuffer: CMSampleBuffer?, _ error: Error?) -> Void)
+public typealias blockCompletionCaptureVideo = (_ url: URL?, _ error: NSError?) -> (Void)
+public typealias blockCompletionOutputBuffer = (_ sampleBuffer: CMSampleBuffer) -> (Void)
+public typealias blockCompletionProgressRecording = (_ duration: Float64) -> (Void)
 
 extension AVCaptureVideoOrientation {
-    static func orientationFromUIDeviceOrientation(orientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
+    static func orientationFromUIDeviceOrientation(_ orientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
         switch orientation {
-        case .Portrait: return .Portrait
-        case .LandscapeLeft: return .LandscapeRight
-        case .LandscapeRight: return .LandscapeLeft
-        case .PortraitUpsideDown: return .PortraitUpsideDown
-        default: return .Portrait
+        case .portrait: return .portrait
+        case .landscapeLeft: return .landscapeRight
+        case .landscapeRight: return .landscapeLeft
+        case .portraitUpsideDown: return .portraitUpsideDown
+        default: return .portrait
         }
     }
 }
 
 class CameraEngineCaptureOutput: NSObject {
     
-    private let stillCameraOutput = AVCaptureStillImageOutput()
-    private let movieFileOutput = AVCaptureMovieFileOutput()
-    private var captureVideoOutput = AVCaptureVideoDataOutput()
-    private var captureAudioOutput = AVCaptureAudioDataOutput()
-    private var blockCompletionVideo: blockCompletionCaptureVideo?
+    let stillCameraOutput = AVCapturePhotoOutput()
+    let movieFileOutput = AVCaptureMovieFileOutput()
+    var captureVideoOutput = AVCaptureVideoDataOutput()
+    var captureAudioOutput = AVCaptureAudioDataOutput()
+    var blockCompletionVideo: blockCompletionCaptureVideo?
+    var blockCompletionPhoto: blockCompletionCapturePhoto?
     
-    private let videoEncoder = CameraEngineVideoEncoder()
+    let videoEncoder = CameraEngineVideoEncoder()
     
     var isRecording = false
     var blockCompletionBuffer: blockCompletionOutputBuffer?
     var blockCompletionProgress: blockCompletionProgressRecording?
-	
-	func capturePhotoBuffer(blockCompletion: blockCompletionCapturePhotoBuffer) {
-		guard let connectionVideo  = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo) else {
-			blockCompletion(sampleBuffer: nil, error: nil)
-			return
-		}
-		connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
-		
-		self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connectionVideo, completionHandler: blockCompletion)
-	}
-	
-    func capturePhoto(blockCompletion: blockCompletionCapturePhoto) {
-        guard let connectionVideo  = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo) else {
-            blockCompletion(image: nil, error: nil)
+    
+    func capturePhotoBuffer(settings: AVCapturePhotoSettings, _ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
+        guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
+            blockCompletion(nil, nil)
             return
         }
-        connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
-        
-        self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connectionVideo) { (sampleBuffer: CMSampleBuffer!, err: NSError!) -> Void in
-            if let err = err {
-                blockCompletion(image: nil, error: err)
-            }
-            else {
-                if let sampleBuffer = sampleBuffer, let dataImage = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer) {
-                    let image = UIImage(data: dataImage)
-                    blockCompletion(image: image, error: nil)
-                }
-                else {
-                    blockCompletion(image: nil, error: nil)
-                }
-            }
-        }
+        connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
+        self.stillCameraOutput.capturePhoto(with: settings, delegate: self)
     }
     
-    func setPressetVideoEncoder(videoEncoderPresset: CameraEngineVideoEncoderEncoderSettings) {
+    func capturePhoto(settings: AVCapturePhotoSettings, _ blockCompletion: @escaping blockCompletionCapturePhoto) {
+        guard let connectionVideo  = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo) else {
+            blockCompletion(nil, nil)
+            return
+        }
+        self.blockCompletionPhoto = blockCompletion
+        connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
+        self.stillCameraOutput.capturePhoto(with: settings, delegate: self)
+    }
+    
+    func setPressetVideoEncoder(_ videoEncoderPresset: CameraEngineVideoEncoderEncoderSettings) {
         self.videoEncoder.presetSettingEncoder = videoEncoderPresset.configuration()
     }
     
-    func startRecordVideo(blockCompletion: blockCompletionCaptureVideo, url: NSURL) {
+    func startRecordVideo(_ blockCompletion: @escaping blockCompletionCaptureVideo, url: URL) {
         if self.isRecording == false {
             self.videoEncoder.startWriting(url)
             self.isRecording = true
@@ -95,7 +82,7 @@ class CameraEngineCaptureOutput: NSObject {
         self.videoEncoder.stopWriting(self.blockCompletionVideo)
     }
     
-    func configureCaptureOutput(session: AVCaptureSession, sessionQueue: dispatch_queue_t) {
+    func configureCaptureOutput(_ session: AVCaptureSession, sessionQueue: DispatchQueue) {
         if session.canAddOutput(self.captureVideoOutput) {
             session.addOutput(self.captureVideoOutput)
             self.captureVideoOutput.setSampleBufferDelegate(self, queue: sessionQueue)
@@ -111,18 +98,35 @@ class CameraEngineCaptureOutput: NSObject {
     }
 }
 
+extension CameraEngineCaptureOutput: AVCapturePhotoCaptureDelegate {
+    public func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        if let error = error {
+            self.blockCompletionPhoto?(nil, error)
+        }
+        else {
+            if let sampleBuffer = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: nil) {
+                let image = UIImage(data: dataImage)
+                self.blockCompletionPhoto?(image, nil)
+            }
+            else {
+                self.blockCompletionPhoto?(nil, nil)
+            }
+        }
+    }
+}
+
 extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
     
-    private func progressCurrentBuffer(sampleBuffer: CMSampleBuffer) {
-        if let block = self.blockCompletionProgress where self.isRecording {
-            block(duration: self.videoEncoder.progressCurrentBuffer(sampleBuffer))
+    private func progressCurrentBuffer(_ sampleBuffer: CMSampleBuffer) {
+        if let block = self.blockCompletionProgress, self.isRecording {
+            block(self.videoEncoder.progressCurrentBuffer(sampleBuffer))
         }
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         self.progressCurrentBuffer(sampleBuffer)
         if let block = self.blockCompletionBuffer {
-            block(sampleBuffer: sampleBuffer)
+            block(sampleBuffer)
         }
         if CMSampleBufferDataIsReady(sampleBuffer) == false || self.isRecording == false {
             return
@@ -138,15 +142,15 @@ extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegat
 
 extension CameraEngineCaptureOutput: AVCaptureFileOutputRecordingDelegate {
     
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
+    func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         print("start recording ...")
     }
     
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         print("end recording video ... \(outputFileURL)")
         print("error : \(error)")
         if let blockCompletionVideo = self.blockCompletionVideo {
-            blockCompletionVideo(url: outputFileURL, error: error)
+            blockCompletionVideo(outputFileURL, error as NSError?)
         }
-    }
+    }    
 }

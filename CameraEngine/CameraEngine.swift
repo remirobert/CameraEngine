@@ -10,56 +10,56 @@ import UIKit
 import AVFoundation
 
 public enum CameraEngineSessionPreset {
-    case Photo
-    case High
-    case Medium
-    case Low
-    case Res352x288
-    case Res640x480
-    case Res1280x720
-    case Res1920x1080
-    case Res3840x2160
-    case Frame960x540
-    case Frame1280x720
-    case InputPriority
+    case photo
+    case high
+    case medium
+    case low
+    case res352x288
+    case res640x480
+    case res1280x720
+    case res1920x1080
+    case res3840x2160
+    case frame960x540
+    case frame1280x720
+    case inputPriority
     
     public func foundationPreset() -> String {
         switch self {
-        case .Photo: return AVCaptureSessionPresetPhoto
-        case .High: return AVCaptureSessionPresetHigh
-        case .Medium: return AVCaptureSessionPresetMedium
-        case .Low: return AVCaptureSessionPresetLow
-        case .Res352x288: return AVCaptureSessionPreset352x288
-        case .Res640x480: return AVCaptureSessionPreset640x480
-        case .Res1280x720: return AVCaptureSessionPreset1280x720
-        case .Res1920x1080: return AVCaptureSessionPreset1920x1080
-        case .Res3840x2160:
+        case .photo: return AVCaptureSessionPresetPhoto
+        case .high: return AVCaptureSessionPresetHigh
+        case .medium: return AVCaptureSessionPresetMedium
+        case .low: return AVCaptureSessionPresetLow
+        case .res352x288: return AVCaptureSessionPreset352x288
+        case .res640x480: return AVCaptureSessionPreset640x480
+        case .res1280x720: return AVCaptureSessionPreset1280x720
+        case .res1920x1080: return AVCaptureSessionPreset1920x1080
+        case .res3840x2160:
             if #available(iOS 9.0, *) {
                 return AVCaptureSessionPreset3840x2160
             }
             else {
                 return AVCaptureSessionPresetPhoto
             }
-        case .Frame960x540: return AVCaptureSessionPresetiFrame960x540
-        case .Frame1280x720: return AVCaptureSessionPresetiFrame1280x720
+        case .frame960x540: return AVCaptureSessionPresetiFrame960x540
+        case .frame1280x720: return AVCaptureSessionPresetiFrame1280x720
         default: return AVCaptureSessionPresetPhoto
         }
     }
     
     public static func availablePresset() -> [CameraEngineSessionPreset] {
         return [
-            .Photo,
-            .High,
-            .Medium,
-            .Low,
-            .Res352x288,
-            .Res640x480,
-            .Res1280x720,
-            .Res1920x1080,
-            .Res3840x2160,
-            .Frame960x540,
-            .Frame1280x720,
-            .InputPriority
+            .photo,
+            .high,
+            .medium,
+            .low,
+            .res352x288,
+            .res640x480,
+            .res1280x720,
+            .res1920x1080,
+            .res3840x2160,
+            .frame960x540,
+            .frame1280x720,
+            .inputPriority
         ]
     }
 }
@@ -68,19 +68,18 @@ let cameraEngineSessionQueueIdentifier = "com.cameraEngine.capturesession"
 
 public class CameraEngine: NSObject {
     
-    private let session = AVCaptureSession()
-    private let cameraDevice = CameraEngineDevice()
-    private let cameraOutput = CameraEngineCaptureOutput()
-    private let cameraInput = CameraEngineDeviceInput()
-    private let cameraMetadata = CameraEngineMetadataOutput()
-    private let cameraGifEncoder = CameraEngineGifEncoder()
-    private var captureDeviceIntput: AVCaptureDeviceInput?
+    let session = AVCaptureSession()
+    let cameraDevice = CameraEngineDevice()
+    let cameraOutput = CameraEngineCaptureOutput()
+    let cameraInput = CameraEngineDeviceInput()
+    let cameraMetadata = CameraEngineMetadataOutput()
+    let cameraGifEncoder = CameraEngineGifEncoder()
+    let capturePhotoSettings = AVCapturePhotoSettings()
+    var captureDeviceIntput: AVCaptureDeviceInput?
     
-    private var sessionQueue: dispatch_queue_t! = {
-        dispatch_queue_create(cameraEngineSessionQueueIdentifier, DISPATCH_QUEUE_SERIAL)
-    }()
+    var sessionQueue: DispatchQueue = DispatchQueue(label: cameraEngineSessionQueueIdentifier)
     
-    private var _torchMode: AVCaptureTorchMode = .Off
+    private var _torchMode: AVCaptureTorchMode = .off
     public var torchMode: AVCaptureTorchMode! {
         get {
             return _torchMode
@@ -91,7 +90,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    private var _flashMode: AVCaptureFlashMode = .Off
+    private var _flashMode: AVCaptureFlashMode = .off
     public var flashMode: AVCaptureFlashMode! {
         get {
             return _flashMode
@@ -104,11 +103,11 @@ public class CameraEngine: NSObject {
     
     public lazy var previewLayer: AVCaptureVideoPreviewLayer! = {
         let layer =  AVCaptureVideoPreviewLayer(session: self.session)
-        layer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        layer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         return layer
     }()
     
-    private var _sessionPresset: CameraEngineSessionPreset = .InputPriority
+    private var _sessionPresset: CameraEngineSessionPreset = .inputPriority
     public var sessionPresset: CameraEngineSessionPreset! {
         get {
             return self._sessionPresset
@@ -124,7 +123,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    private var _cameraFocus: CameraEngineCameraFocus = .ContinuousAutoFocus
+    private var _cameraFocus: CameraEngineCameraFocus = .continuousAutoFocus
     public var cameraFocus: CameraEngineCameraFocus! {
         get {
             return self._cameraFocus
@@ -135,7 +134,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    private var _metadataDetection: CameraEngineCaptureOutputDetection = .None
+    private var _metadataDetection: CameraEngineCaptureOutputDetection = .none
     public var metadataDetection: CameraEngineCaptureOutputDetection! {
         get {
             return self._metadataDetection
@@ -224,7 +223,7 @@ public class CameraEngine: NSObject {
     public var isAdjustingFocus: Bool {
         get {
             if let `captureDevice` = captureDevice {
-                return captureDevice.adjustingFocus
+                return captureDevice.isAdjustingFocus
             }
             
             return false
@@ -234,7 +233,7 @@ public class CameraEngine: NSObject {
     public var isAdjustingExposure: Bool {
         get {
             if let `captureDevice` = captureDevice {
-                return captureDevice.adjustingExposure
+                return captureDevice.isAdjustingExposure
             }
             
             return false
@@ -244,23 +243,14 @@ public class CameraEngine: NSObject {
     public var isAdjustingWhiteBalance: Bool {
         get {
             if let `captureDevice` = captureDevice {
-                return captureDevice.adjustingWhiteBalance
+                return captureDevice.isAdjustingWhiteBalance
             }
             
             return false
         }
     }
     
-    public class var sharedInstance: CameraEngine {
-        struct Static {
-            static var onceToken: dispatch_once_t = 0
-            static var instance: CameraEngine? = nil
-        }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = CameraEngine()
-        }
-        return Static.instance!
-    }
+    public static var sharedInstance: CameraEngine = CameraEngine()
     
     public override init() {
         super.init()
@@ -269,11 +259,11 @@ public class CameraEngine: NSObject {
     
     deinit {
         self.stopSession()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupSession() {
-        dispatch_async(self.sessionQueue) { () -> Void in
+        self.sessionQueue.async { () -> Void in
             self.configureInputDevice()
             self.configureOutputDevice()
             self.handleDeviceOrientation()
@@ -281,7 +271,7 @@ public class CameraEngine: NSObject {
     }
     
     public class func askAuthorization() -> AVAuthorizationStatus {
-        return AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        return AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
     }
     
     //MARK: Session management
@@ -289,7 +279,7 @@ public class CameraEngine: NSObject {
     public func startSession() {
         let session = self.session
         
-        dispatch_async(self.sessionQueue) { () -> Void in
+        self.sessionQueue.async { () -> Void in
             session.startRunning()
         }
     }
@@ -297,7 +287,7 @@ public class CameraEngine: NSObject {
     public func stopSession() {
         let session = self.session
         
-        dispatch_async(self.sessionQueue) { () -> Void in
+        self.sessionQueue.async { () -> Void in
             session.stopRunning()
         }
     }
@@ -306,22 +296,22 @@ public class CameraEngine: NSObject {
     
     private func handleDeviceOrientation() {
         if self.rotationCamera {
-			if (!UIDevice.currentDevice().generatesDeviceOrientationNotifications) {
-				UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+			if (!UIDevice.current.isGeneratingDeviceOrientationNotifications) {
+				UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 			}
-            NSNotificationCenter.defaultCenter().addObserverForName(UIDeviceOrientationDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (_) -> Void in
-                self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIDeviceOrientationDidChange, object: nil, queue: OperationQueue.main) { (_) -> Void in
+                self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
             }
         }
         else {
-			if (UIDevice.currentDevice().generatesDeviceOrientationNotifications) {
-				UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+			if (UIDevice.current.isGeneratingDeviceOrientationNotifications) {
+				UIDevice.current.endGeneratingDeviceOrientationNotifications()
 			}
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         }
     }
     
-    public func changeCurrentDevice(position: AVCaptureDevicePosition) {
+    public func changeCurrentDevice(_ position: AVCaptureDevicePosition) {
         self.cameraDevice.changeCurrentDevice(position)
         self.configureInputDevice()
     }
@@ -351,21 +341,24 @@ public class CameraEngine: NSObject {
         return CameraEngineCaptureOutputDetection.availableDetection()
     }
     
-    private func configureFlash(mode: AVCaptureFlashMode) {
-        if let currentDevice = self.cameraDevice.currentDevice where currentDevice.flashAvailable && currentDevice.flashMode != mode {
-            do {
-                try currentDevice.lockForConfiguration()
-                currentDevice.flashMode = mode
-                currentDevice.unlockForConfiguration()
-            }
-            catch {
-                fatalError("[CameraEngine] error lock configuration device")
-            }
+    private func configureFlash(_ mode: AVCaptureFlashMode) {
+        if let currentDevice = self.cameraDevice.currentDevice, currentDevice.isFlashAvailable && self.capturePhotoSettings.flashMode != mode {
+            self.capturePhotoSettings.flashMode = mode
         }
+//        if let currentDevice = self.cameraDevice.currentDevice, currentDevice.isFlashAvailable && currentDevice.flashMode != mode {
+//            do {
+//                try currentDevice.lockForConfiguration()
+//                currentDevice.flashMode = mode
+//                currentDevice.unlockForConfiguration()
+//            }
+//            catch {
+//                fatalError("[CameraEngine] error lock configuration device")
+//            }
+//        }
     }
     
-    private func configureTorch(mode: AVCaptureTorchMode) {
-        if let currentDevice = self.cameraDevice.currentDevice where currentDevice.torchAvailable && currentDevice.torchMode != mode {
+    private func configureTorch(_ mode: AVCaptureTorchMode) {
+        if let currentDevice = self.cameraDevice.currentDevice, currentDevice.isTorchAvailable && currentDevice.torchMode != mode {
             do {
                 try currentDevice.lockForConfiguration()
                 currentDevice.torchMode = mode
@@ -379,7 +372,7 @@ public class CameraEngine: NSObject {
     
     public func switchCurrentDevice() {
         if self.isRecording == false {
-            self.changeCurrentDevice((self.cameraDevice.currentPosition == .Back) ? .Front : .Back)
+            self.changeCurrentDevice((self.cameraDevice.currentPosition == .back) ? .front : .back)
         }
     }
     
@@ -403,10 +396,10 @@ public class CameraEngine: NSObject {
                 try self.cameraInput.configureInputMic(self.session, device: micDevice)
             }
         }
-        catch CameraEngineDeviceInputErrorType.UnableToAddCamera {
+        catch CameraEngineDeviceInputErrorType.unableToAddCamera {
             fatalError("[CameraEngine] unable to add camera as InputDevice")
         }
-        catch CameraEngineDeviceInputErrorType.UnableToAddMic {
+        catch CameraEngineDeviceInputErrorType.unableToAddMic {
             fatalError("[CameraEngine] unable to add mic as InputDevice")
         }
         catch {
@@ -425,30 +418,30 @@ public class CameraEngine: NSObject {
 
 public extension CameraEngine {
     
-    public func focus(atPoint: CGPoint) {
+    public func focus(_ atPoint: CGPoint) {
         if let currentDevice = self.cameraDevice.currentDevice {
-			let performFocus = currentDevice.isFocusModeSupported(.AutoFocus) && currentDevice.focusPointOfInterestSupported
-			let performExposure = currentDevice.isExposureModeSupported(.AutoExpose) && currentDevice.exposurePointOfInterestSupported
+			let performFocus = currentDevice.isFocusModeSupported(.autoFocus) && currentDevice.isFocusPointOfInterestSupported
+			let performExposure = currentDevice.isExposureModeSupported(.autoExpose) && currentDevice.isExposurePointOfInterestSupported
             if performFocus || performExposure {
-                let focusPoint = self.previewLayer.captureDevicePointOfInterestForPoint(atPoint)
+                let focusPoint = self.previewLayer.captureDevicePointOfInterest(for: atPoint)
                 do {
                     try currentDevice.lockForConfiguration()
 					
 					if performFocus {
 						currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-						if currentDevice.focusMode == AVCaptureFocusMode.Locked {
-							currentDevice.focusMode = AVCaptureFocusMode.AutoFocus
+						if currentDevice.focusMode == AVCaptureFocusMode.locked {
+							currentDevice.focusMode = AVCaptureFocusMode.autoFocus
 						} else {
-							currentDevice.focusMode = AVCaptureFocusMode.ContinuousAutoFocus
+							currentDevice.focusMode = AVCaptureFocusMode.continuousAutoFocus
 						}
 					}
 					
                     if performExposure {
 						currentDevice.exposurePointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-                        if currentDevice.exposureMode == AVCaptureExposureMode.Locked {
-                            currentDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+                        if currentDevice.exposureMode == AVCaptureExposureMode.locked {
+                            currentDevice.exposureMode = AVCaptureExposureMode.autoExpose
                         } else {
-                            currentDevice.exposureMode = AVCaptureExposureMode.ContinuousAutoExposure;
+                            currentDevice.exposureMode = AVCaptureExposureMode.continuousAutoExposure;
                         }
                     }
                     currentDevice.unlockForConfiguration()
@@ -465,17 +458,17 @@ public extension CameraEngine {
 
 public extension CameraEngine {
     
-    public func capturePhoto(blockCompletion: blockCompletionCapturePhoto) {
-        self.cameraOutput.capturePhoto(blockCompletion)
+    public func capturePhoto(_ blockCompletion: @escaping blockCompletionCapturePhoto) {
+        self.cameraOutput.capturePhoto(settings: self.capturePhotoSettings, blockCompletion)
     }
 	
-	public func capturePhotoBuffer(blockCompletion: blockCompletionCapturePhotoBuffer) {
-		self.cameraOutput.capturePhotoBuffer(blockCompletion)
+	public func capturePhotoBuffer(_ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
+        self.cameraOutput.capturePhotoBuffer(settings: self.capturePhotoSettings, blockCompletion)
 	}
     
-    public func startRecordingVideo(url: NSURL, blockCompletion: blockCompletionCaptureVideo) {
+    public func startRecordingVideo(_ url: URL, blockCompletion: @escaping blockCompletionCaptureVideo) {
         if self.isRecording == false {
-            dispatch_async(self.sessionQueue, { () -> Void in
+            self.sessionQueue.async(execute: { () -> Void in
                 self.cameraOutput.startRecordVideo(blockCompletion, url: url)
             })
         }
@@ -483,13 +476,13 @@ public extension CameraEngine {
     
     public func stopRecordingVideo() {
         if self.isRecording {
-            dispatch_async(self.sessionQueue, { () -> Void in
+            self.sessionQueue.async(execute: { () -> Void in
                 self.cameraOutput.stopRecordVideo()
             })
         }
     }
     
-    public func createGif(fileUrl: NSURL, frames: [UIImage], delayTime: Float, loopCount: Int = 0, completionGif: blockCompletionGifEncoder) {
+    public func createGif(_ fileUrl: URL, frames: [UIImage], delayTime: Float, loopCount: Int = 0, completionGif: @escaping blockCompletionGifEncoder) {
         self.cameraGifEncoder.blockCompletionGif = completionGif
         self.cameraGifEncoder.createGif(fileUrl, frames: frames, delayTime: delayTime, loopCount: loopCount)
     }

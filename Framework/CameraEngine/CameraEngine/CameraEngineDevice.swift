@@ -40,7 +40,7 @@ public enum CameraEngineCameraFocus {
 }
 
 class CameraEngineDevice {
-
+    
     private var backCameraDevice: AVCaptureDevice!
     private var frontCameraDevice: AVCaptureDevice!
     var micCameraDevice: AVCaptureDevice!
@@ -90,15 +90,9 @@ class CameraEngineDevice {
     }
     
     private func configureDeviceCamera() {
-        let availableCameraDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-        for device in availableCameraDevices as! [AVCaptureDevice] {
-            if device.position == .back {
-                self.backCameraDevice = device
-            }
-            else if device.position == .front {
-                self.frontCameraDevice = device
-            }
-        }        
+        self.backCameraDevice = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInDuoCamera, AVCaptureDeviceType.builtInTelephotoCamera, AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.back).devices.first
+        
+        self.frontCameraDevice = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInDuoCamera, AVCaptureDeviceType.builtInTelephotoCamera, AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.front).devices.first
     }
     
     private func configureDeviceMic() {

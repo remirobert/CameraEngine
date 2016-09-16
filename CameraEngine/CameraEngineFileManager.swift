@@ -10,15 +10,15 @@ import UIKit
 import Photos
 import ImageIO
 
-public typealias blockCompletionSaveMedia = (success: Bool, error: NSError?) -> (Void)
+public typealias blockCompletionSaveMedia = (_ success: Bool, _ error: Error?) -> (Void)
 
 public class CameraEngineFileManager {
     
-    private class func removeItemAtPath(path: String) {
-        let filemanager = NSFileManager.defaultManager()
-        if filemanager.fileExistsAtPath(path) {
+    private class func removeItemAtPath(_ path: String) {
+        let filemanager = FileManager.default
+        if filemanager.fileExists(atPath: path) {
             do {
-                try filemanager.removeItemAtPath(path)
+                try filemanager.removeItem(atPath: path)
             }
             catch {
                 print("[Camera engine] Error remove path :\(path)")
@@ -26,26 +26,26 @@ public class CameraEngineFileManager {
         }
     }
     
-    private class func appendPath(rootPath: String, pathFile: String) -> String {
-        let destinationPath = rootPath.stringByAppendingString("/\(pathFile)")
+    private class func appendPath(_ rootPath: String, pathFile: String) -> String {
+        let destinationPath = rootPath + "/\(pathFile)"
         self.removeItemAtPath(destinationPath)
         return destinationPath
     }
     
-    public class func savePhoto(image: UIImage, blockCompletion: blockCompletionSaveMedia?) {
-        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-            PHAssetChangeRequest.creationRequestForAssetFromImage(image)
+    public class func savePhoto(_ image: UIImage, blockCompletion: blockCompletionSaveMedia?) {
+        PHPhotoLibrary.shared().performChanges({ () -> Void in
+            PHAssetChangeRequest.creationRequestForAsset(from: image)
             }, completionHandler: blockCompletion)
     }
     
-    public class func saveVideo(url: NSURL, blockCompletion: blockCompletionSaveMedia?) {
-        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-            PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(url)
+    public class func saveVideo(_ url: URL, blockCompletion: blockCompletionSaveMedia?) {
+        PHPhotoLibrary.shared().performChanges({ () -> Void in
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
             }, completionHandler: blockCompletion)
     }
     
     public class func documentPath() -> String? {
-        if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last {
+        if let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last {
             return path
         }
         return nil
@@ -55,14 +55,14 @@ public class CameraEngineFileManager {
         return NSTemporaryDirectory()
     }
     
-    public class func documentPath(file: String) -> NSURL? {
+    public class func documentPath(_ file: String) -> URL? {
         if let path = self.documentPath() {
-            return NSURL(fileURLWithPath: self.appendPath(path, pathFile: file))
+            return URL(fileURLWithPath: self.appendPath(path, pathFile: file))
         }
         return nil
     }
     
-    public class func temporaryPath(file: String) -> NSURL? {
-        return NSURL(fileURLWithPath: self.appendPath(self.temporaryPath(), pathFile: file))
+    public class func temporaryPath(_ file: String) -> URL? {
+        return URL(fileURLWithPath: self.appendPath(self.temporaryPath(), pathFile: file))
     }
 }
