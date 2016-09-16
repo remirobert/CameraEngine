@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/remi936"
 
   s.platform     = :ios
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "10"
 
   s.source       = { :git => "https://github.com/remirobert/CameraEngine.git", :tag => "0.9.2" }
   s.source_files  = "source", "CameraEngine/*"
