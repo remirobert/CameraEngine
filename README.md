@@ -64,7 +64,7 @@ To add the Framework, you can also create a **workspace** for your project, then
 
 ## :rocket: Quick start
 
-> First let's init the and start the camera session. You can call that in the viewDidLoad, or in the appDelegate.
+> First let's init and start the camera session. You can call that in viewDidLoad, or in appDelegate.
 
 ```Swift
 override func viewDidLoad() {
