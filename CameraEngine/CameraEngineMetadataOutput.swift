@@ -87,7 +87,7 @@ class CameraEngineMetadataOutput: NSObject, AVCaptureMetadataOutputObjectsDelega
         }
         
         for metadataObject in metadataObjects as! [AVMetadataObject] {
-            switch metadataObject.type {
+            switch metadataObject.type as String {
             case AVMetadataObjectTypeFace:
                 if let block = self.blockCompletionFaceDetection, self.currentMetadataOutput == .face {
                     let transformedMetadataObject = previewLayer.transformedMetadataObject(for: metadataObject)
