@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FE9684B1E92634900437A67 /* CameraEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE9684A1E92634900437A67 /* CameraEngine.framework */; };
+		2FE9684C1E92634900437A67 /* CameraEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE9684A1E92634900437A67 /* CameraEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB3B05D31D8C242A00165E2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05D21D8C242A00165E2C /* AppDelegate.swift */; };
 		BB3B05D51D8C242A00165E2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B05D41D8C242A00165E2C /* ViewController.swift */; };
 		BB3B05D81D8C242A00165E2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB3B05D61D8C242A00165E2C /* Main.storyboard */; };
@@ -15,7 +17,22 @@
 		BB9DFAD61D8C4D95001E7B35 /* CameraEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9DFAD51D8C4D95001E7B35 /* CameraEngine.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2FE9684D1E92634900437A67 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2FE9684C1E92634900437A67 /* CameraEngine.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2FE9684A1E92634900437A67 /* CameraEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CameraEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B05CF1D8C242A00165E2C /* CameraEngineExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraEngineExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B05D21D8C242A00165E2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB3B05D41D8C242A00165E2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9DFAD61D8C4D95001E7B35 /* CameraEngine.framework in Frameworks */,
+				2FE9684B1E92634900437A67 /* CameraEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +59,7 @@
 		BB3B05C61D8C242900165E2C = {
 			isa = PBXGroup;
 			children = (
+				2FE9684A1E92634900437A67 /* CameraEngine.framework */,
 				BB3B05D11D8C242A00165E2C /* CameraEngineExample */,
 				BB3B05D01D8C242A00165E2C /* Products */,
 				BB9DFAD41D8C4D95001E7B35 /* Frameworks */,
@@ -86,6 +105,7 @@
 				BB3B05CB1D8C242A00165E2C /* Sources */,
 				BB3B05CC1D8C242A00165E2C /* Frameworks */,
 				BB3B05CD1D8C242A00165E2C /* Resources */,
+				2FE9684D1E92634900437A67 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -108,7 +128,7 @@
 				TargetAttributes = {
 					BB3B05CE1D8C242A00165E2C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 44Q2J6374R;
+						DevelopmentTeam = 2R66XDN32F;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -273,7 +293,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 44Q2J6374R;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2R66XDN32F;
 				INFOPLIST_FILE = CameraEngineExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.remirobert.CameraEngineExample;
@@ -286,7 +307,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 44Q2J6374R;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2R66XDN32F;
 				INFOPLIST_FILE = CameraEngineExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.remirobert.CameraEngineExample;
