@@ -150,7 +150,8 @@ class CameraEngineVideoEncoder {
         self.videoInputWriter.markAsFinished()
         self.audioInputWriter.markAsFinished()
         
-        self.assetWriter.finishWriting { () -> Void in
+        self.assetWriter.finishWriting {[weak self] () -> Void in
+            guard let `self` = self else { return }
             if let blockCompletion = blockCompletion {
                 blockCompletion(self.assetWriter.outputURL, nil)
             }
