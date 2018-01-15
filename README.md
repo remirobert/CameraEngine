@@ -19,9 +19,8 @@
 
 ## :fire: Features
 
-
-              |  CameraEngine
---------------------------|------------------------------------------------------------
+|         | CameraEngine  |
+----------|-----------------
 :relaxed: | Support iOS8 - iOS9
 :triangular_ruler: | Support orientation device
 :checkered_flag: | Fast capture
