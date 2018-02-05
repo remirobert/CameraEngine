@@ -101,7 +101,7 @@ public class CameraEngine: NSObject {
         }
     }
     
-    public lazy var previewLayer: AVCaptureVideoPreviewLayer! = {
+    public lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
         let layer =  AVCaptureVideoPreviewLayer(session: self.session)
         layer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         return layer
@@ -300,7 +300,7 @@ public class CameraEngine: NSObject {
 				UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 			}
             NotificationCenter.default.addObserver(forName: NSNotification.Name.UIDeviceOrientationDidChange, object: nil, queue: OperationQueue.main) { (_) -> Void in
-                self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
+                self.previewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
             }
         }
         else {
@@ -423,31 +423,32 @@ public extension CameraEngine {
 			let performFocus = currentDevice.isFocusModeSupported(.autoFocus) && currentDevice.isFocusPointOfInterestSupported
 			let performExposure = currentDevice.isExposureModeSupported(.autoExpose) && currentDevice.isExposurePointOfInterestSupported
             if performFocus || performExposure {
-                let focusPoint = self.previewLayer.captureDevicePointOfInterest(for: atPoint)
-                do {
-                    try currentDevice.lockForConfiguration()
-					
-					if performFocus {
-						currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-						if currentDevice.focusMode == AVCaptureFocusMode.locked {
-							currentDevice.focusMode = AVCaptureFocusMode.autoFocus
-						} else {
-							currentDevice.focusMode = AVCaptureFocusMode.continuousAutoFocus
-						}
-					}
-					
-                    if performExposure {
-						currentDevice.exposurePointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
-                        if currentDevice.exposureMode == AVCaptureExposureMode.locked {
-                            currentDevice.exposureMode = AVCaptureExposureMode.autoExpose
-                        } else {
-                            currentDevice.exposureMode = AVCaptureExposureMode.continuousAutoExposure;
+                if let focusPoint = self.previewLayer?.captureDevicePointOfInterest(for: atPoint) {
+                    do {
+                        try currentDevice.lockForConfiguration()
+
+                        if performFocus {
+                            currentDevice.focusPointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+                            if currentDevice.focusMode == AVCaptureFocusMode.locked {
+                                currentDevice.focusMode = AVCaptureFocusMode.autoFocus
+                            } else {
+                                currentDevice.focusMode = AVCaptureFocusMode.continuousAutoFocus
+                            }
                         }
+
+                        if performExposure {
+                            currentDevice.exposurePointOfInterest = CGPoint(x: focusPoint.x, y: focusPoint.y)
+                            if currentDevice.exposureMode == AVCaptureExposureMode.locked {
+                                currentDevice.exposureMode = AVCaptureExposureMode.autoExpose
+                            } else {
+                                currentDevice.exposureMode = AVCaptureExposureMode.continuousAutoExposure;
+                            }
+                        }
+                        currentDevice.unlockForConfiguration()
                     }
-                    currentDevice.unlockForConfiguration()
-                }
-                catch {
-                    fatalError("[CameraEngine] error lock configuration device")
+                    catch {
+                        fatalError("[CameraEngine] error lock configuration device")
+                    }
                 }
             }
         }
@@ -459,7 +460,8 @@ public extension CameraEngine {
 public extension CameraEngine {
     
     public func capturePhoto(_ blockCompletion: @escaping blockCompletionCapturePhoto) {
-        self.cameraOutput.capturePhoto(settings: self.capturePhotoSettings, blockCompletion)
+        let uniqueSettings = AVCapturePhotoSettings.init(from: self.capturePhotoSettings)
+        self.cameraOutput.capturePhoto(settings: uniqueSettings, blockCompletion)
     }
 	
 	public func capturePhotoBuffer(_ blockCompletion: @escaping blockCompletionCapturePhotoBuffer) {
