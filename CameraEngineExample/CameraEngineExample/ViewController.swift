@@ -125,7 +125,7 @@ class ViewController: UIViewController {
                         if success {
                             let alertController =  UIAlertController(title: "Success, image saved !", message: nil, preferredStyle: .alert)
                             alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                                self.present(alertController, animated: true, completion: nil)
+                            self.present(alertController, animated: true, completion: nil)
                         }
                     })
                 }
