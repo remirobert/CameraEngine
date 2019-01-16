@@ -118,9 +118,10 @@ class ViewController: UIViewController {
     @IBAction func takePhoto(_ sender: AnyObject) {
         switch self.mode {
         case .Photo:
-            self.cameraEngine.capturePhoto { (image , error) -> (Void) in
+            self.cameraEngine.capturePhoto {[weak self] (image , error) -> (Void) in
                 if let image = image {
                     CameraEngineFileManager.savePhoto(image, blockCompletion: { (success, error) -> (Void) in
+                        guard let `self` = self else { return }
                         if success {
                             let alertController =  UIAlertController(title: "Success, image saved !", message: nil, preferredStyle: .alert)
                             alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -133,9 +134,11 @@ class ViewController: UIViewController {
             if !self.cameraEngine.isRecording {
                 if let url = CameraEngineFileManager.temporaryPath("video.mp4") {
                     self.buttonTrigger.setTitle("stop recording", for: .normal)
-                    self.cameraEngine.startRecordingVideo(url, blockCompletion: { (url: URL?, error: NSError?) -> (Void) in
+                    self.cameraEngine.startRecordingVideo(url, blockCompletion: {[weak self] (url: URL?, error: NSError?) -> (Void) in
                         if let url = url {
                             DispatchQueue.main.async {
+                                guard let `self` = self else { return }
+
                                 self.buttonTrigger.setTitle("start recording", for: .normal)
                                 CameraEngineFileManager.saveVideo(url, blockCompletion: { (success: Bool, error: Error?) -> (Void) in
                                     if success {

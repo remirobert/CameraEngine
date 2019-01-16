@@ -299,7 +299,8 @@ public class CameraEngine: NSObject {
 			if (!UIDevice.current.isGeneratingDeviceOrientationNotifications) {
 				UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 			}
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIDeviceOrientationDidChange, object: nil, queue: OperationQueue.main) { (_) -> Void in
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIDeviceOrientationDidChange, object: nil, queue: OperationQueue.main) { [weak self] (_) -> Void in
+                guard let `self` = self else { return }
                 self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.current.orientation)
             }
         }
@@ -468,7 +469,8 @@ public extension CameraEngine {
     
     public func startRecordingVideo(_ url: URL, blockCompletion: @escaping blockCompletionCaptureVideo) {
         if self.isRecording == false {
-            self.sessionQueue.async(execute: { () -> Void in
+            self.sessionQueue.async(execute: {[weak self] () -> Void in
+                guard let `self` = self else { return }
                 self.cameraOutput.startRecordVideo(blockCompletion, url: url)
             })
         }
@@ -476,7 +478,8 @@ public extension CameraEngine {
     
     public func stopRecordingVideo() {
         if self.isRecording {
-            self.sessionQueue.async(execute: { () -> Void in
+            self.sessionQueue.async(execute: {[weak self] () -> Void in
+                guard let `self` = self else { return }
                 self.cameraOutput.stopRecordVideo()
             })
         }
